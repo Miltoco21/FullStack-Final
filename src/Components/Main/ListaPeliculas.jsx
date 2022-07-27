@@ -2,24 +2,22 @@ import React, { useState, useEffect } from "react";
 import "../Main/ListaPeliculas.css";
 // const imagesLista = require.context("../../assets/img-listaPeliculas", true);
 import Loader from "../../Loader/Loader";
-import images from "../../exports/images";
+// import images from "../../exports/images";
+import clientAxios from "../../config/clientAxios";
 import { motion } from "framer-motion";
 const ListaPeliculas = () => {
-  // const [isLoader, setIsLoader] = useState(false)
-  // const loaderTrue = ()=>{
-  // }
-  // const [image, setImage] = useState("");
+  const [isLoader, setIsLoader] = useState(false);
+
+  const [listImages, setListImages] = useState();
   const getData = () => {
-    fetch("http://localhost:8080/imagenes")
-      .then((response) => response.json)
-      .then((response) => {
-        console.log(response);
-        
-      });
+    clientAxios.get(`/imagenes`).then((response) => {
+      setListImages(response.data);
+      setIsLoader(true);
+    });
   };
   useEffect(() => {
     getData();
-  }, []);
+  },[]);
 
   return (
     <>
@@ -145,75 +143,81 @@ const ListaPeliculas = () => {
       <div className="titulo-controles">
         <h3>Populares</h3>
       </div>
-      <motion.div className="slider-container">
-        <motion.div
-          className="slider"
-          drag="x"
-          dragConstraints={{ right: 0, left: -4800 }}
-        >
-          {images.map((image) => (
-            <motion.div className="item">
-              <a href="/">
-                <img src={image} alt="" />
-              </a>
+      {isLoader ? (
+        <>
+          <motion.div className="slider-container">
+            <motion.div
+              className="slider"
+              drag="x"
+              dragConstraints={{ right: 0, left: -3600 }}
+            >
+              {listImages.map((image, i) => (
+                <motion.div className="item" key={i}>
+                  <a href="/">
+                    <img src={image.url} alt={image.name} />
+                  </a>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
-      <div className="titulo-controles">
-        <h3>Populares</h3>
-      </div>
-      <motion.div className="slider-container">
-        <motion.div
-          className="slider"
-          drag="x"
-          dragConstraints={{ right: 0, left: -4800 }}
-        >
-          {images.map((image) => (
-            <motion.div className="item">
-              <a href="/">
-                <img src={image} alt="" />
-              </a>
+          </motion.div>
+          <div className="titulo-controles">
+            <h3>Populares</h3>
+          </div>
+          <motion.div className="slider-container">
+            <motion.div
+              className="slider"
+              drag="x"
+              dragConstraints={{ right: 0, left: -3600 }}
+            >
+              {listImages.map((image, i) => (
+                <motion.div className="item" key={i}>
+                  <a href="/">
+                    <img src={image.url} alt={image.name} />
+                  </a>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
-      <div className="titulo-controles">
-        <h3>Populares</h3>
-      </div>
-      <motion.div className="slider-container">
-        <motion.div
-          className="slider"
-          drag="x"
-          dragConstraints={{ right: 0, left: -4800 }}
-        >
-          {images.map((image) => (
-            <motion.div className="item">
-              <a href="/">
-                <img src={image} alt="" />
-              </a>
+          </motion.div>
+          <div className="titulo-controles">
+            <h3>Populares</h3>
+          </div>
+          <motion.div className="slider-container">
+            <motion.div
+              className="slider"
+              drag="x"
+              dragConstraints={{ right: 0, left: -3600 }}
+            >
+              {listImages.map((image, i) => (
+                <motion.div className="item" key={i}>
+                  <a href="/">
+                    <img src={image.url} alt={image.name} />
+                  </a>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
-      <div className="titulo-controles">
-        <h3>Populares</h3>
-      </div>
-      <motion.div className="slider-container">
-        <motion.div
-          className="slider"
-          drag="x"
-          dragConstraints={{ right: 0, left: -4800 }}
-        >
-          {images.map((image) => (
-            <motion.div className="item">
-              <a href="/">
-                <img src={image} alt="" />
-              </a>
+          </motion.div>
+          <div className="titulo-controles">
+            <h3>Populares</h3>
+          </div>
+          <motion.div className="slider-container">
+            <motion.div
+              className="slider"
+              drag="x"
+              dragConstraints={{ right: 0, left: -3600 }}
+            >
+              {listImages.map((image, i) => (
+                <motion.div className="item" key={i}>
+                  <a href="/">
+                    <img src={image.url} alt={image.name} />
+                  </a>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
+          </motion.div>
+        </>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };
