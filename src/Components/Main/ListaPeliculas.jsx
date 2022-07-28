@@ -1,23 +1,34 @@
 import React, { useState, useEffect } from "react";
 import "../Main/ListaPeliculas.css";
-// const imagesLista = require.context("../../assets/img-listaPeliculas", true);
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Loader from "../../Loader/Loader";
-// import images from "../../exports/images";
 import clientAxios from "../../config/clientAxios";
-import { motion } from "framer-motion";
 const ListaPeliculas = () => {
   const [isLoader, setIsLoader] = useState(false);
-
-  const [listImages, setListImages] = useState();
+  const [listImages, setListImages] = useState([]);
+  const [flag, setFlag] = useState(false);
   const getData = () => {
     clientAxios.get(`/imagenes`).then((response) => {
       setListImages(response.data);
       setIsLoader(true);
+      setFlag(true);
+      console.log(listImages);
     });
   };
   useEffect(() => {
     getData();
-  },[]);
+  }, [flag]);
+
+  let settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    cssEase: "linear",
+  };
 
   return (
     <>
@@ -145,75 +156,591 @@ const ListaPeliculas = () => {
       </div>
       {isLoader ? (
         <>
-          <motion.div className="slider-container">
-            <motion.div
-              className="slider"
-              drag="x"
-              dragConstraints={{ right: 0, left: -3600 }}
-            >
-              {listImages.map((image, i) => (
-                <motion.div className="item" key={i}>
-                  <a href="/">
-                    <img src={image.url} alt={image.name} />
-                  </a>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-          <div className="titulo-controles">
-            <h3>Populares</h3>
+          <div className="my-5">
+            <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
+              POPULARES
+            </h1>
           </div>
-          <motion.div className="slider-container">
-            <motion.div
-              className="slider"
-              drag="x"
-              dragConstraints={{ right: 0, left: -3600 }}
-            >
-              {listImages.map((image, i) => (
-                <motion.div className="item" key={i}>
-                  <a href="/">
+          <Slider {...settings}>
+            {listImages.map((image, i) => (
+              <div className="card-wrapper" key={i}>
+                <div className="card">
+                  <div className="card-image">
                     <img src={image.url} alt={image.name} />
-                  </a>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-          <div className="titulo-controles">
-            <h3>Populares</h3>
+                  </div>
+                  <ul className="social-icons p-0">
+                    <li>
+                      <a href="/">
+                        <i className="fa fa-play"></i>
+                      </a>
+                    </li>
+                    {/* <li>
+                <a href="/">
+                  <i className="fa fa-instagram"></i>
+                </a>
+              </li>
+              <li>
+                <a href="/">
+                  <i className="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="/">
+                  <i className="fa fa-dribbble"></i>
+                </a>
+              </li> */}
+                  </ul>
+                  <div className="details">
+                    <h2>
+                      {image.name}{" "}
+                      <span className="job-title">UI Developer</span>
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {/* <div className="card-wrapper">
+        <div className="card">
+          <div className="card-image">
+            <img src="images/15.jpg" />
           </div>
-          <motion.div className="slider-container">
-            <motion.div
-              className="slider"
-              drag="x"
-              dragConstraints={{ right: 0, left: -3600 }}
-            >
-              {listImages.map((image, i) => (
-                <motion.div className="item" key={i}>
-                  <a href="/">
-                    <img src={image.url} alt={image.name} />
-                  </a>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-          <div className="titulo-controles">
-            <h3>Populares</h3>
+          <ul className="social-icons">
+            <li>
+              <a href="/">
+                <i className="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                <i className="fa fa-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                <i className="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                <i className="fa fa-dribbble"></i>
+              </a>
+            </li>
+          </ul>
+          <div className="details">
+            <h2>
+              John Doe <span className="job-title">UI Developer</span>
+            </h2>
           </div>
-          <motion.div className="slider-container">
-            <motion.div
-              className="slider"
-              drag="x"
-              dragConstraints={{ right: 0, left: -3600 }}
-            >
-              {listImages.map((image, i) => (
-                <motion.div className="item" key={i}>
-                  <a href="/">
+        </div>
+      </div>
+      <div className="card-wrapper">
+        <div className="card">
+          <div className="card-image">
+            <img src="images/7.jpg" />
+          </div>
+          <ul className="social-icons">
+            <li>
+              <a href="/">
+                <i className="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                <i className="fa fa-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                <i className="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                <i className="fa fa-dribbble"></i>
+              </a>
+            </li>
+          </ul>
+          <div className="details">
+            <h2>
+              John Doe <span className="job-title">UI Developer</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div className="card-wrapper">
+        <div className="card">
+          <div className="card-image">
+            <img src="images/16.jpg" />
+          </div>
+          <ul className="social-icons">
+            <li>
+              <a href="/">
+                <i className="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                <i className="fa fa-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                <i className="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                <i className="fa fa-dribbble"></i>
+              </a>
+            </li>
+          </ul>
+          <div className="details">
+            <h2>
+              John Doe <span className="job-title">UI Developer</span>
+            </h2>
+          </div>
+        </div>
+      </div> */}
+          </Slider>
+
+          <div className="mt-5">
+            <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
+              PROXIMAMENTE
+            </h1>
+          </div>
+          <Slider className="mt-5" {...settings}>
+            {listImages.map((image, i) => (
+              <div className="card-wrapper" key={i} >
+                <div className="card">
+                  <div className="card-image">
                     <img src={image.url} alt={image.name} />
-                  </a>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+                  </div>
+                  <ul className="social-icons rounded">
+                    <li>
+                      <a href="/">
+                        <i className="fa fa-play"></i>
+                      </a>
+                    </li>
+                    {/* <li>
+               <a href="/">
+                 <i className="fa fa-instagram"></i>
+               </a>
+             </li>
+             <li>
+               <a href="/">
+                 <i className="fa fa-twitter"></i>
+               </a>
+             </li>
+             <li>
+               <a href="/">
+                 <i className="fa fa-dribbble"></i>
+               </a>
+             </li> */}
+                  </ul>
+                  <div className="details">
+                    <h2>
+                      {image.name}{" "}
+                      <span className="job-title">UI Developer</span>
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {/* <div className="card-wrapper">
+       <div className="card">
+         <div className="card-image">
+           <img src="images/15.jpg" />
+         </div>
+         <ul className="social-icons">
+           <li>
+             <a href="/">
+               <i className="fa fa-facebook"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-instagram"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-twitter"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-dribbble"></i>
+             </a>
+           </li>
+         </ul>
+         <div className="details">
+           <h2>
+             John Doe <span className="job-title">UI Developer</span>
+           </h2>
+         </div>
+       </div>
+     </div>
+     <div className="card-wrapper">
+       <div className="card">
+         <div className="card-image">
+           <img src="images/7.jpg" />
+         </div>
+         <ul className="social-icons">
+           <li>
+             <a href="/">
+               <i className="fa fa-facebook"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-instagram"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-twitter"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-dribbble"></i>
+             </a>
+           </li>
+         </ul>
+         <div className="details">
+           <h2>
+             John Doe <span className="job-title">UI Developer</span>
+           </h2>
+         </div>
+       </div>
+     </div>
+     <div className="card-wrapper">
+       <div className="card">
+         <div className="card-image">
+           <img src="images/16.jpg" />
+         </div>
+         <ul className="social-icons">
+           <li>
+             <a href="/">
+               <i className="fa fa-facebook"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-instagram"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-twitter"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-dribbble"></i>
+             </a>
+           </li>
+         </ul>
+         <div className="details">
+           <h2>
+             John Doe <span className="job-title">UI Developer</span>
+           </h2>
+         </div>
+       </div>
+     </div> */}
+          </Slider>
+          <div className="mt-5">
+            <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
+              MEJOR PUNTUACION
+            </h1>
+          </div>
+          <Slider className="mt-5" {...settings}>
+            {listImages.map((image, i) => (
+              <div className="card-wrapper" key={i} >
+                <div className="card">
+                  <div className="card-image">
+                    <img src={image.url} alt={image.name} />
+                  </div>
+                  <ul className="social-icons rounded">
+                    <li>
+                      <a href="/">
+                        <i className="fa fa-play"></i>
+                      </a>
+                    </li>
+                    {/* <li>
+               <a href="/">
+                 <i className="fa fa-instagram"></i>
+               </a>
+             </li>
+             <li>
+               <a href="/">
+                 <i className="fa fa-twitter"></i>
+               </a>
+             </li>
+             <li>
+               <a href="/">
+                 <i className="fa fa-dribbble"></i>
+               </a>
+             </li> */}
+                  </ul>
+                  <div className="details">
+                    <h2>
+                      {image.name}{" "}
+                      <span className="job-title">UI Developer</span>
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {/* <div className="card-wrapper">
+       <div className="card">
+         <div className="card-image">
+           <img src="images/15.jpg" />
+         </div>
+         <ul className="social-icons">
+           <li>
+             <a href="/">
+               <i className="fa fa-facebook"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-instagram"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-twitter"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-dribbble"></i>
+             </a>
+           </li>
+         </ul>
+         <div className="details">
+           <h2>
+             John Doe <span className="job-title">UI Developer</span>
+           </h2>
+         </div>
+       </div>
+     </div>
+     <div className="card-wrapper">
+       <div className="card">
+         <div className="card-image">
+           <img src="images/7.jpg" />
+         </div>
+         <ul className="social-icons">
+           <li>
+             <a href="/">
+               <i className="fa fa-facebook"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-instagram"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-twitter"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-dribbble"></i>
+             </a>
+           </li>
+         </ul>
+         <div className="details">
+           <h2>
+             John Doe <span className="job-title">UI Developer</span>
+           </h2>
+         </div>
+       </div>
+     </div>
+     <div className="card-wrapper">
+       <div className="card">
+         <div className="card-image">
+           <img src="images/16.jpg" />
+         </div>
+         <ul className="social-icons">
+           <li>
+             <a href="/">
+               <i className="fa fa-facebook"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-instagram"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-twitter"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-dribbble"></i>
+             </a>
+           </li>
+         </ul>
+         <div className="details">
+           <h2>
+             John Doe <span className="job-title">UI Developer</span>
+           </h2>
+         </div>
+       </div>
+     </div> */}
+          </Slider>
+          <div className="my-5">
+            <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
+              TV
+            </h1>
+          </div>
+          <Slider className="mt-5" {...settings}>
+            {listImages.map((image, i) => (
+              <div className="card-wrapper" key={i} >
+                <div className="card">
+                  <div className="card-image">
+                    <img src={image.url} alt={image.name} />
+                  </div>
+                  <ul className="social-icons rounded">
+                    <li>
+                      <a href="/">
+                        <i className="fa fa-play"></i>
+                      </a>
+                    </li>
+                    {/* <li>
+               <a href="/">
+                 <i className="fa fa-instagram"></i>
+               </a>
+             </li>
+             <li>
+               <a href="/">
+                 <i className="fa fa-twitter"></i>
+               </a>
+             </li>
+             <li>
+               <a href="/">
+                 <i className="fa fa-dribbble"></i>
+               </a>
+             </li> */}
+                  </ul>
+                  <div className="details">
+                    <h2>
+                      {image.name}{" "}
+                      <span className="job-title">UI Developer</span>
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {/* <div className="card-wrapper">
+       <div className="card">
+         <div className="card-image">
+           <img src="images/15.jpg" />
+         </div>
+         <ul className="social-icons">
+           <li>
+             <a href="/">
+               <i className="fa fa-facebook"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-instagram"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-twitter"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-dribbble"></i>
+             </a>
+           </li>
+         </ul>
+         <div className="details">
+           <h2>
+             John Doe <span className="job-title">UI Developer</span>
+           </h2>
+         </div>
+       </div>
+     </div>
+     <div className="card-wrapper">
+       <div className="card">
+         <div className="card-image">
+           <img src="images/7.jpg" />
+         </div>
+         <ul className="social-icons">
+           <li>
+             <a href="/">
+               <i className="fa fa-facebook"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-instagram"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-twitter"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-dribbble"></i>
+             </a>
+           </li>
+         </ul>
+         <div className="details">
+           <h2>
+             John Doe <span className="job-title">UI Developer</span>
+           </h2>
+         </div>
+       </div>
+     </div>
+     <div className="card-wrapper">
+       <div className="card">
+         <div className="card-image">
+           <img src="images/16.jpg" />
+         </div>
+         <ul className="social-icons">
+           <li>
+             <a href="/">
+               <i className="fa fa-facebook"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-instagram"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-twitter"></i>
+             </a>
+           </li>
+           <li>
+             <a href="/">
+               <i className="fa fa-dribbble"></i>
+             </a>
+           </li>
+         </ul>
+         <div className="details">
+           <h2>
+             John Doe <span className="job-title">UI Developer</span>
+           </h2>
+         </div>
+       </div>
+     </div> */}
+          </Slider>
         </>
       ) : (
         <Loader />
