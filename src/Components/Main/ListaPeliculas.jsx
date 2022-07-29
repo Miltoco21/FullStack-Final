@@ -8,17 +8,162 @@ import clientAxios from "../../config/clientAxios";
 const ListaPeliculas = () => {
   const [isLoader, setIsLoader] = useState(false);
   const [listImages, setListImages] = useState([]);
+  const [listProximos, setListProximos] = useState([]);
+  const [listMejores, setListMejores] = useState([]);
+  const [listTv, setListTv] = useState([]);
+  const [populares, setPopulares] = useState([]);
+  const [proximos, setProximos] = useState([]);
+  const [mejores, setMejores] = useState([]);
+  const [tv, setTv] = useState([]);
   const [flag, setFlag] = useState(false);
+
   const getData = () => {
     clientAxios.get(`/imagenes`).then((response) => {
       setListImages(response.data);
       setIsLoader(true);
-      setFlag(true);
       console.log(listImages);
     });
   };
+  const getDataProximos = () => {
+    clientAxios.get(`/proximos`).then((response) => {
+      setListProximos(response.data);
+      setIsLoader(true);
+      console.log(listProximos);
+    });
+  };
+  const getDataMejores = () => {
+    clientAxios.get(`/mejores`).then((response) => {
+      setListMejores(response.data);
+      setIsLoader(true);
+      console.log(listMejores);
+    });
+  };
+  const getDataTv = () => {
+    clientAxios.get(`/tv`).then((response) => {
+      setListTv(response.data);
+      setIsLoader(true);
+      console.log(listTv);
+    });
+  };
+  const getPopulares = () => {
+    fetch(
+      "https://api.themoviedb.org/3/movie/popular?api_key=08f4ac90b9e9e07dad9b84738e14c7f2&language=es-MX"
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setPopulares(response.results);
+        console.log(populares);
+      });
+  };
+  const getProximos = () => {
+    fetch(
+      "https://api.themoviedb.org/3/movie/upcoming?api_key=08f4ac90b9e9e07dad9b84738e14c7f2&language=es-MX"
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setProximos(response.results);    
+        console.log(proximos);
+      });
+  };
+  const getMejores = () => {
+    fetch(
+      "https://api.themoviedb.org/3/movie/top_rated?api_key=08f4ac90b9e9e07dad9b84738e14c7f2&language=es-MX"
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setMejores(response.results);   
+        console.log(mejores);
+      });
+  };
+  const getTv = () => {
+    fetch(
+      "https://api.themoviedb.org/3/tv/popular?api_key=08f4ac90b9e9e07dad9b84738e14c7f2&language=es-MX"
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setTv(response.results);
+        setFlag(true);
+        console.log(tv);
+      });
+  };
+  const postPopulares = () => {
+    populares.map((popular) => {
+      fetch(`${process.env.REACT_APP_URL_BASE}/imagenes`, {
+        method: "POST",
+        body: JSON.stringify({
+          name: `${popular.title}`,
+          url: `https://image.tmdb.org/t/p/original/${popular.poster_path}`,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+    });
+  };
+  const postProximos = () => {
+    proximos.map((proximo) => {
+      fetch(`${process.env.REACT_APP_URL_BASE}/proximos`, {
+        method: "POST",
+        body: JSON.stringify({
+          name: `${proximo.title}`,
+          url: `https://image.tmdb.org/t/p/original/${proximo.poster_path}`,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+    });
+  };
+  const postMejores = () => {
+    mejores.map((mejor) => {
+      fetch(`${process.env.REACT_APP_URL_BASE}/mejores`, {
+        method: "POST",
+        body: JSON.stringify({
+          name: `${mejor.title}`,
+          url: `https://image.tmdb.org/t/p/original/${mejor.poster_path}`,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+    });
+  };
+  const postTv= () => {
+    tv.map((tv) => {
+      fetch(`${process.env.REACT_APP_URL_BASE}/tv`, {
+        method: "POST",
+        body: JSON.stringify({
+          name: `${tv.name}`,
+          url: `https://image.tmdb.org/t/p/original/${tv.poster_path}`,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+    });
+  };
+
   useEffect(() => {
     getData();
+    getDataProximos();
+    getDataMejores();
+    getDataTv();
+    getPopulares();
+    getProximos();
+    getMejores();
+    getTv()
+    postPopulares();
+    postProximos();
+    postMejores();
+    postTv();
   }, [flag]);
 
   let settings = {
@@ -191,10 +336,7 @@ const ListaPeliculas = () => {
               </li> */}
                   </ul>
                   <div className="details">
-                    <h2>
-                      {image.name}{" "}
-                      <span className="job-title">UI Developer</span>
-                    </h2>
+                    <h2>{image.name}</h2>
                   </div>
                 </div>
               </div>
@@ -309,13 +451,13 @@ const ListaPeliculas = () => {
             </h1>
           </div>
           <Slider className="mt-5" {...settings}>
-            {listImages.map((image, i) => (
-              <div className="card-wrapper" key={i} >
+            {listProximos.map((image, i) => (
+              <div className="card-wrapper" key={i}>
                 <div className="card">
                   <div className="card-image">
                     <img src={image.url} alt={image.name} />
                   </div>
-                  <ul className="social-icons rounded">
+                  <ul className="social-icons p-0">
                     <li>
                       <a href="/">
                         <i className="fa fa-play"></i>
@@ -455,13 +597,13 @@ const ListaPeliculas = () => {
             </h1>
           </div>
           <Slider className="mt-5" {...settings}>
-            {listImages.map((image, i) => (
-              <div className="card-wrapper" key={i} >
+            {listMejores.map((image, i) => (
+              <div className="card-wrapper" key={i}>
                 <div className="card">
                   <div className="card-image">
                     <img src={image.url} alt={image.name} />
                   </div>
-                  <ul className="social-icons rounded">
+                  <ul className="social-icons p-0">
                     <li>
                       <a href="/">
                         <i className="fa fa-play"></i>
@@ -601,13 +743,13 @@ const ListaPeliculas = () => {
             </h1>
           </div>
           <Slider className="mt-5" {...settings}>
-            {listImages.map((image, i) => (
-              <div className="card-wrapper" key={i} >
+            {listTv.map((image, i) => (
+              <div className="card-wrapper" key={i}>
                 <div className="card">
                   <div className="card-image">
                     <img src={image.url} alt={image.name} />
                   </div>
-                  <ul className="social-icons rounded">
+                  <ul className="social-icons p-0">
                     <li>
                       <a href="/">
                         <i className="fa fa-play"></i>
