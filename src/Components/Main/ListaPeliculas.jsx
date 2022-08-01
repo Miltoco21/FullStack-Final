@@ -3,168 +3,130 @@ import "../Main/ListaPeliculas.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Loader from "../../Loader/Loader";
 import clientAxios from "../../config/clientAxios";
+const axios = require("axios");
+
 const ListaPeliculas = () => {
-  const [isLoader, setIsLoader] = useState(false);
-  const [listImages, setListImages] = useState([]);
-  const [listProximos, setListProximos] = useState([]);
-  const [listMejores, setListMejores] = useState([]);
-  const [listTv, setListTv] = useState([]);
   const [populares, setPopulares] = useState([]);
   const [proximos, setProximos] = useState([]);
   const [mejores, setMejores] = useState([]);
   const [tv, setTv] = useState([]);
-  const [flag, setFlag] = useState(false);
+  const [listImages, setListImages] = useState([]);
+  const [listProximos, setListProximos] = useState([]);
+  const [listMejores, setListMejores] = useState([]);
+  const [listTv, setListTv] = useState([]);
 
-  const getData = () => {
-    clientAxios.get(`/imagenes`).then((response) => {
-      setListImages(response.data);
-      setIsLoader(true);
-      console.log(listImages);
-    });
-  };
-  const getDataProximos = () => {
-    clientAxios.get(`/proximos`).then((response) => {
-      setListProximos(response.data);
-      setIsLoader(true);
-      console.log(listProximos);
-    });
-  };
-  const getDataMejores = () => {
-    clientAxios.get(`/mejores`).then((response) => {
-      setListMejores(response.data);
-      setIsLoader(true);
-      console.log(listMejores);
-    });
-  };
-  const getDataTv = () => {
-    clientAxios.get(`/tv`).then((response) => {
-      setListTv(response.data);
-      setIsLoader(true);
-      console.log(listTv);
-    });
-  };
   const getPopulares = () => {
-    fetch(
-      "https://api.themoviedb.org/3/movie/popular?api_key=08f4ac90b9e9e07dad9b84738e14c7f2&language=es-MX"
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        setPopulares(response.results);
-        console.log(populares);
-      });
+    clientAxios.get('/populares')
+    .then(response =>{
+      setListImages(response.data)
+    })
   };
   const getProximos = () => {
-    fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?api_key=08f4ac90b9e9e07dad9b84738e14c7f2&language=es-MX"
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        setProximos(response.results);    
-        console.log(proximos);
-      });
+    clientAxios.get('/proximos')
+    .then(response=>{
+      setListProximos(response.data);
+    })
   };
   const getMejores = () => {
-    fetch(
-      "https://api.themoviedb.org/3/movie/top_rated?api_key=08f4ac90b9e9e07dad9b84738e14c7f2&language=es-MX"
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        setMejores(response.results);   
-        console.log(mejores);
-      });
+    clientAxios.get('/mejores')
+    .then(response=>{
+      setListMejores(response.data);
+    })
   };
   const getTv = () => {
-    fetch(
-      "https://api.themoviedb.org/3/tv/popular?api_key=08f4ac90b9e9e07dad9b84738e14c7f2&language=es-MX"
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        setTv(response.results);
-        setFlag(true);
-        console.log(tv);
-      });
+    clientAxios.get('/tv')
+    .then(response=>{
+      setListTv(response.data);
+    })
   };
-  const postPopulares = () => {
-    populares.map((popular) => {
-      fetch(`${process.env.REACT_APP_URL_BASE}/imagenes`, {
-        method: "POST",
-        body: JSON.stringify({
-          name: `${popular.title}`,
-          url: `https://image.tmdb.org/t/p/original/${popular.poster_path}`,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-    });
-  };
-  const postProximos = () => {
-    proximos.map((proximo) => {
-      fetch(`${process.env.REACT_APP_URL_BASE}/proximos`, {
-        method: "POST",
-        body: JSON.stringify({
-          name: `${proximo.title}`,
-          url: `https://image.tmdb.org/t/p/original/${proximo.poster_path}`,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-    });
-  };
-  const postMejores = () => {
-    mejores.map((mejor) => {
-      fetch(`${process.env.REACT_APP_URL_BASE}/mejores`, {
-        method: "POST",
-        body: JSON.stringify({
-          name: `${mejor.title}`,
-          url: `https://image.tmdb.org/t/p/original/${mejor.poster_path}`,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-    });
-  };
-  const postTv= () => {
-    tv.map((tv) => {
-      fetch(`${process.env.REACT_APP_URL_BASE}/tv`, {
-        method: "POST",
-        body: JSON.stringify({
-          name: `${tv.name}`,
-          url: `https://image.tmdb.org/t/p/original/${tv.poster_path}`,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-    });
-  };
+  // const postProximos = () => {
+  //   proximos.map((proximo) => {
+  //     fetch(`${process.env.REACT_APP_URL_BASE}/proximos`, {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         name: `${proximo.title}`,
+  //         url: `https://image.tmdb.org/t/p/original/${proximo.poster_path}`,
+  //       }),
+  //       headers: {
+  //         "Content-type": "application/json; charset=UTF-8",
+  //       },
+  //     })
+  //       .then((response) => response.json())
+  //       .then((json) => console.log(json));
+  //   });
+  // };
+  // const postMejores = () => {
+  //   mejores.map((mejor) => {
+  //     fetch(`${process.env.REACT_APP_URL_BASE}/mejores`, {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         name: `${mejor.title}`,
+  //         url: `https://image.tmdb.org/t/p/original/${mejor.poster_path}`,
+  //       }),
+  //       headers: {
+  //         "Content-type": "application/json; charset=UTF-8",
+  //       },
+  //     })
+  //       .then((response) => response.json())
+  //       .then((json) => console.log(json));
+  //   });
+  // };
+  // const postTv = () => {
+  //   tv.map((tv) => {
+  //     fetch(`${process.env.REACT_APP_URL_BASE}/tv`, {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         name: `${tv.name}`,
+  //         url: `https://image.tmdb.org/t/p/original/${tv.poster_path}`,
+  //       }),
+  //       headers: {
+  //         "Content-type": "application/json; charset=UTF-8",
+  //       },
+  //     })
+  //       .then((response) => response.json())
+  //       .then((json) => console.log(json));
+  //   });
+  // };
+  // const getData = () => {
+  //   clientAxios.get(`/imagenes`).then((response) => {
+  //     setListImages(response.data);
+  //     console.log(listImages);
+  //   });
+  // };
+  // const getDataProximos = () => {
+  //   clientAxios.get(`/proximos`).then((response) => {
+  //     setListProximos(response.data);
+  //     console.log(listProximos);
+  //   });
+  // };
+  // const getDataMejores = () => {
+  //   clientAxios.get(`/mejores`).then((response) => {
+  //     setListMejores(response.data);
+  //     console.log(listMejores);
+  //   });
+  // };
+  // const getDataTv = () => {
+  //   clientAxios.get(`/tv`).then((response) => {
+  //     setListTv(response.data);
+  //     console.log(listTv);
+  //   });
+  // };
 
   useEffect(() => {
-    getData();
-    getDataProximos();
-    getDataMejores();
-    getDataTv();
     getPopulares();
     getProximos();
     getMejores();
-    getTv()
-    postPopulares();
-    postProximos();
-    postMejores();
-    postTv();
-  }, [flag]);
+    getTv();
+    // postPopulares();
+    // postProximos();
+    // postMejores();
+    // postTv();
+    // getData();
+    // getDataProximos();
+    // getDataMejores();
+    // getDataTv();
+  }, []);
 
   let settings = {
     dots: true,
@@ -296,597 +258,119 @@ const ListaPeliculas = () => {
           </div>
         </div>
       </div>
-      <div className="titulo-controles">
-        <h3>Populares</h3>
-      </div>
-      {isLoader ? (
-        <>
-          <div className="my-5">
-            <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
-              POPULARES
-            </h1>
-          </div>
-          <Slider {...settings}>
-            {listImages.map((image, i) => (
-              <div className="card-wrapper" key={i}>
-                <div className="card">
-                  <div className="card-image">
-                    <img src={image.url} alt={image.name} />
-                  </div>
-                  <ul className="social-icons p-0">
-                    <li>
-                      <a href="/">
-                        <i className="fa fa-play"></i>
-                      </a>
-                    </li>
-                    {/* <li>
-                <a href="/">
-                  <i className="fa fa-instagram"></i>
-                </a>
-              </li>
-              <li>
-                <a href="/">
-                  <i className="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a href="/">
-                  <i className="fa fa-dribbble"></i>
-                </a>
-              </li> */}
-                  </ul>
-                  <div className="details">
-                    <h2>{image.name}</h2>
-                  </div>
+      <div className="sliderContainer">
+        <div className="my-5">
+          <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
+            POPULARES
+          </h1>
+        </div>
+        <Slider {...settings}>
+          {listImages.map((image, i) => (
+            <div className="card-wrapper" key={i}>
+              <div className="card">
+                <div className="card-image">
+                  <img src={image.url} alt={image.name} />
+                </div>
+                <ul className="social-icons p-0">
+                  <li>
+                    <a href="/">
+                      <i className="fa fa-play"></i>
+                    </a>
+                  </li>
+                </ul>
+                <div className="details">
+                  <h2>{image.name}</h2>
                 </div>
               </div>
-            ))}
-            {/* <div className="card-wrapper">
-        <div className="card">
-          <div className="card-image">
-            <img src="images/15.jpg" />
-          </div>
-          <ul className="social-icons">
-            <li>
-              <a href="/">
-                <i className="fa fa-facebook"></i>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fa fa-instagram"></i>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fa fa-dribbble"></i>
-              </a>
-            </li>
-          </ul>
-          <div className="details">
-            <h2>
-              John Doe <span className="job-title">UI Developer</span>
-            </h2>
-          </div>
-        </div>
-      </div>
-      <div className="card-wrapper">
-        <div className="card">
-          <div className="card-image">
-            <img src="images/7.jpg" />
-          </div>
-          <ul className="social-icons">
-            <li>
-              <a href="/">
-                <i className="fa fa-facebook"></i>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fa fa-instagram"></i>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fa fa-dribbble"></i>
-              </a>
-            </li>
-          </ul>
-          <div className="details">
-            <h2>
-              John Doe <span className="job-title">UI Developer</span>
-            </h2>
-          </div>
-        </div>
-      </div>
-      <div className="card-wrapper">
-        <div className="card">
-          <div className="card-image">
-            <img src="images/16.jpg" />
-          </div>
-          <ul className="social-icons">
-            <li>
-              <a href="/">
-                <i className="fa fa-facebook"></i>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fa fa-instagram"></i>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <i className="fa fa-dribbble"></i>
-              </a>
-            </li>
-          </ul>
-          <div className="details">
-            <h2>
-              John Doe <span className="job-title">UI Developer</span>
-            </h2>
-          </div>
-        </div>
-      </div> */}
-          </Slider>
+            </div>
+          ))}
+        </Slider>
 
-          <div className="mt-5">
-            <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
-              PROXIMAMENTE
-            </h1>
-          </div>
-          <Slider className="mt-5" {...settings}>
-            {listProximos.map((image, i) => (
-              <div className="card-wrapper" key={i}>
-                <div className="card">
-                  <div className="card-image">
-                    <img src={image.url} alt={image.name} />
-                  </div>
-                  <ul className="social-icons p-0">
-                    <li>
-                      <a href="/">
-                        <i className="fa fa-play"></i>
-                      </a>
-                    </li>
-                    {/* <li>
-               <a href="/">
-                 <i className="fa fa-instagram"></i>
-               </a>
-             </li>
-             <li>
-               <a href="/">
-                 <i className="fa fa-twitter"></i>
-               </a>
-             </li>
-             <li>
-               <a href="/">
-                 <i className="fa fa-dribbble"></i>
-               </a>
-             </li> */}
-                  </ul>
-                  <div className="details">
-                    <h2>
-                      {image.name}{" "}
-                      <span className="job-title">UI Developer</span>
-                    </h2>
-                  </div>
+        <div className="mt-5">
+          <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
+            PROXIMAMENTE
+          </h1>
+        </div>
+        <Slider className="mt-5" {...settings}>
+          {listProximos.map((image, i) => (
+            <div className="card-wrapper" key={i}>
+              <div className="card">
+                <div className="card-image">
+                  <img src={image.url} alt={image.name} />
+                </div>
+                <ul className="social-icons p-0">
+                  <li>
+                    <a href="/">
+                      <i className="fa fa-play"></i>
+                    </a>
+                  </li>
+                </ul>
+                <div className="details">
+                  <h2>
+                    {image.name} 
+                  </h2>
                 </div>
               </div>
-            ))}
-            {/* <div className="card-wrapper">
-       <div className="card">
-         <div className="card-image">
-           <img src="images/15.jpg" />
-         </div>
-         <ul className="social-icons">
-           <li>
-             <a href="/">
-               <i className="fa fa-facebook"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-instagram"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-twitter"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-dribbble"></i>
-             </a>
-           </li>
-         </ul>
-         <div className="details">
-           <h2>
-             John Doe <span className="job-title">UI Developer</span>
-           </h2>
-         </div>
-       </div>
-     </div>
-     <div className="card-wrapper">
-       <div className="card">
-         <div className="card-image">
-           <img src="images/7.jpg" />
-         </div>
-         <ul className="social-icons">
-           <li>
-             <a href="/">
-               <i className="fa fa-facebook"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-instagram"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-twitter"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-dribbble"></i>
-             </a>
-           </li>
-         </ul>
-         <div className="details">
-           <h2>
-             John Doe <span className="job-title">UI Developer</span>
-           </h2>
-         </div>
-       </div>
-     </div>
-     <div className="card-wrapper">
-       <div className="card">
-         <div className="card-image">
-           <img src="images/16.jpg" />
-         </div>
-         <ul className="social-icons">
-           <li>
-             <a href="/">
-               <i className="fa fa-facebook"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-instagram"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-twitter"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-dribbble"></i>
-             </a>
-           </li>
-         </ul>
-         <div className="details">
-           <h2>
-             John Doe <span className="job-title">UI Developer</span>
-           </h2>
-         </div>
-       </div>
-     </div> */}
-          </Slider>
-          <div className="mt-5">
-            <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
-              MEJOR PUNTUACION
-            </h1>
-          </div>
-          <Slider className="mt-5" {...settings}>
-            {listMejores.map((image, i) => (
-              <div className="card-wrapper" key={i}>
-                <div className="card">
-                  <div className="card-image">
-                    <img src={image.url} alt={image.name} />
-                  </div>
-                  <ul className="social-icons p-0">
-                    <li>
-                      <a href="/">
-                        <i className="fa fa-play"></i>
-                      </a>
-                    </li>
-                    {/* <li>
-               <a href="/">
-                 <i className="fa fa-instagram"></i>
-               </a>
-             </li>
-             <li>
-               <a href="/">
-                 <i className="fa fa-twitter"></i>
-               </a>
-             </li>
-             <li>
-               <a href="/">
-                 <i className="fa fa-dribbble"></i>
-               </a>
-             </li> */}
-                  </ul>
-                  <div className="details">
-                    <h2>
-                      {image.name}{" "}
-                      <span className="job-title">UI Developer</span>
-                    </h2>
-                  </div>
+            </div>
+          ))}
+        </Slider>
+        <div className="mt-5">
+          <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
+            MEJOR PUNTUACION
+          </h1>
+        </div>
+        <Slider className="mt-5" {...settings}>
+          {listMejores.map((image, i) => (
+            <div className="card-wrapper" key={i}>
+              <div className="card">
+                <div className="card-image">
+                  <img src={image.url} alt={image.name} />
+                </div>
+                <ul className="social-icons p-0">
+                  <li>
+                    <a href="/">
+                      <i className="fa fa-play"></i>
+                    </a>
+                  </li>
+                </ul>
+                <div className="details">
+                  <h2>
+                    {image.name} 
+                  </h2>
                 </div>
               </div>
-            ))}
-            {/* <div className="card-wrapper">
-       <div className="card">
-         <div className="card-image">
-           <img src="images/15.jpg" />
-         </div>
-         <ul className="social-icons">
-           <li>
-             <a href="/">
-               <i className="fa fa-facebook"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-instagram"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-twitter"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-dribbble"></i>
-             </a>
-           </li>
-         </ul>
-         <div className="details">
-           <h2>
-             John Doe <span className="job-title">UI Developer</span>
-           </h2>
-         </div>
-       </div>
-     </div>
-     <div className="card-wrapper">
-       <div className="card">
-         <div className="card-image">
-           <img src="images/7.jpg" />
-         </div>
-         <ul className="social-icons">
-           <li>
-             <a href="/">
-               <i className="fa fa-facebook"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-instagram"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-twitter"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-dribbble"></i>
-             </a>
-           </li>
-         </ul>
-         <div className="details">
-           <h2>
-             John Doe <span className="job-title">UI Developer</span>
-           </h2>
-         </div>
-       </div>
-     </div>
-     <div className="card-wrapper">
-       <div className="card">
-         <div className="card-image">
-           <img src="images/16.jpg" />
-         </div>
-         <ul className="social-icons">
-           <li>
-             <a href="/">
-               <i className="fa fa-facebook"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-instagram"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-twitter"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-dribbble"></i>
-             </a>
-           </li>
-         </ul>
-         <div className="details">
-           <h2>
-             John Doe <span className="job-title">UI Developer</span>
-           </h2>
-         </div>
-       </div>
-     </div> */}
-          </Slider>
-          <div className="my-5">
-            <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
-              TV
-            </h1>
-          </div>
-          <Slider className="mt-5" {...settings}>
-            {listTv.map((image, i) => (
-              <div className="card-wrapper" key={i}>
-                <div className="card">
-                  <div className="card-image">
-                    <img src={image.url} alt={image.name} />
-                  </div>
-                  <ul className="social-icons p-0">
-                    <li>
-                      <a href="/">
-                        <i className="fa fa-play"></i>
-                      </a>
-                    </li>
-                    {/* <li>
-               <a href="/">
-                 <i className="fa fa-instagram"></i>
-               </a>
-             </li>
-             <li>
-               <a href="/">
-                 <i className="fa fa-twitter"></i>
-               </a>
-             </li>
-             <li>
-               <a href="/">
-                 <i className="fa fa-dribbble"></i>
-               </a>
-             </li> */}
-                  </ul>
-                  <div className="details">
-                    <h2>
-                      {image.name}{" "}
-                      <span className="job-title">UI Developer</span>
-                    </h2>
-                  </div>
+            </div>
+          ))}
+        </Slider>
+        <div className="my-5">
+          <h1 className=" tituloSlider text-center d-flex justify-content-center align-items-center">
+            TV
+          </h1>
+        </div>
+        <Slider className="mt-5" {...settings}>
+          {listTv.map((image, i) => (
+            <div className="card-wrapper" key={i}>
+              <div className="card">
+                <div className="card-image">
+                  <img src={image.url} alt={image.name} />
+                </div>
+                <ul className="social-icons p-0">
+                  <li>
+                    <a href="/">
+                      <i className="fa fa-play"></i>
+                    </a>
+                  </li>
+                </ul>
+                <div className="details">
+                  <h2>
+                    {image.name} 
+                  </h2>
                 </div>
               </div>
-            ))}
-            {/* <div className="card-wrapper">
-       <div className="card">
-         <div className="card-image">
-           <img src="images/15.jpg" />
-         </div>
-         <ul className="social-icons">
-           <li>
-             <a href="/">
-               <i className="fa fa-facebook"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-instagram"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-twitter"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-dribbble"></i>
-             </a>
-           </li>
-         </ul>
-         <div className="details">
-           <h2>
-             John Doe <span className="job-title">UI Developer</span>
-           </h2>
-         </div>
-       </div>
-     </div>
-     <div className="card-wrapper">
-       <div className="card">
-         <div className="card-image">
-           <img src="images/7.jpg" />
-         </div>
-         <ul className="social-icons">
-           <li>
-             <a href="/">
-               <i className="fa fa-facebook"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-instagram"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-twitter"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-dribbble"></i>
-             </a>
-           </li>
-         </ul>
-         <div className="details">
-           <h2>
-             John Doe <span className="job-title">UI Developer</span>
-           </h2>
-         </div>
-       </div>
-     </div>
-     <div className="card-wrapper">
-       <div className="card">
-         <div className="card-image">
-           <img src="images/16.jpg" />
-         </div>
-         <ul className="social-icons">
-           <li>
-             <a href="/">
-               <i className="fa fa-facebook"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-instagram"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-twitter"></i>
-             </a>
-           </li>
-           <li>
-             <a href="/">
-               <i className="fa fa-dribbble"></i>
-             </a>
-           </li>
-         </ul>
-         <div className="details">
-           <h2>
-             John Doe <span className="job-title">UI Developer</span>
-           </h2>
-         </div>
-       </div>
-     </div> */}
-          </Slider>
-        </>
-      ) : (
-        <Loader />
-      )}
+            </div>
+          ))}
+        </Slider>
+      </div>
     </>
   );
 };

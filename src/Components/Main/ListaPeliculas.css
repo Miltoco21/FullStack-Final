@@ -1,18 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-:root {
-  --color-1: #0f044c;
-  --color-2: #141e61;
-  --color-3: #787a91;
-  --color-4: #eeeeee;
-}
-body {
-  background-color: #3D0000;
-  margin: 0 5%;
-}
 
 /* PELICULA DESTACADA */
 .pelicula-destacada {
@@ -72,6 +57,9 @@ body {
   margin-right: 1em;
 }
 /*------------ SLIDERS DE PELICULAS------------------------ */
+.sliderContainer{
+  margin: 0 5%;
+}
 .tituloSlider{
   color: tomato;
 }
