@@ -1,7 +1,12 @@
 import React from "react";
-import ListaPeliculas from "../Components/Main/ListaPeliculas";
+import Main from "../Components/Main/Main";
+
 const Home = () => {
-  return <ListaPeliculas />;
+  return (
+    <>  
+      <Main />
+    </>
+  );
 };
 
 export default Home;

@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import Home from "./pages/Home";
-import Detalle from "./pages/Detalle";
+import PaginaDetalle from "./pages/PaginaDetalle";
 
 function App() {
   return (
@@ -11,7 +11,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/detalle" element={<Detalle />} />
+          <Route path="/pelicula/:peliculaId" element={<PaginaDetalle />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
         <Footer />
       </BrowserRouter>

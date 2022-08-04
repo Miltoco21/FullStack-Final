@@ -1,11 +1,9 @@
-import React from "react";
-
+import { FaSpinner } from "react-icons/fa";
+import styles from "./Loader.module.css";
 const Loader = () => {
   return (
-    <div className="d-flex justify-content-center">
-      <div class="spinner-border text-light" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+    <div className={styles.spinner}>
+      <FaSpinner size={60} className={styles.spinning} />
     </div>
   );
 };
