@@ -1,13 +1,12 @@
 
 import Footer from "./Components/Footer/Footer";
+import Error404 from "./pages/Error404";
 function App() {
   return (
-    <div >
+    <>
       <Footer/>
-
-      
-      
-    </div>
+      <Error404/>
+    </>
   );
 }
 
