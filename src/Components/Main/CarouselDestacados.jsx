@@ -16,7 +16,6 @@ const CarouselDestacados = () => {
   useEffect(() => {
     getPeliculas();
   }, []);
-  console.log(movieCarousel);
   return (
     <div
       id="carouselExampleCaptions"

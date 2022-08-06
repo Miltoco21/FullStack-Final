@@ -39,7 +39,6 @@ const GrillaPeliculas = () => {
       setMoviesAux(movies)
     }
   };
-  console.log(movies);
   return (
     <>
       <form className={styles.searchContainer}>
