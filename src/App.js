@@ -1,11 +1,13 @@
-
-import Footer from "./Components/Footer/Footer";
 import Error404 from "./pages/Error404";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
-      <Footer/>
-      <Error404/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Error404 />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

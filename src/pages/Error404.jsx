@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "../img/Image.jpeg";
 import { Container, Card } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import { Link } from "react-router-dom";
+
 /* import { Link } from "react-router-dom";
  */
 const Error404 = () => {
@@ -35,12 +36,19 @@ const Error404 = () => {
               <div className="card-img-overlay d-flex align-items-center p-3 p-sm-4">
                 <div className="w-100 my-auto">
                   <Card.Title className="text-white display-4">404</Card.Title>
-                  <h2 className="text-white display-5">No se encuentra la página buscada</h2>
+                  <h2 className="text-white display-5">
+                    No se encuentra la página buscada
+                  </h2>
                   <div className="d-flex justify-content-center">
                     {/*  <Link to="/" className="btn btn-danger mt-3">
                         Volver al inicio
                       </Link> */}
                   </div>
+                  {/* <Link to="/error"> */}
+                  <button type="button" className="btn btn-primary my-4">
+                    Volver
+                  </button>
+                  {/* </Link> */}
                 </div>
               </div>
             </Card>
