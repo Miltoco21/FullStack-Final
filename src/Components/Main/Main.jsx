@@ -3,7 +3,6 @@ import GrillaPeliculas from "./GrillaPeliculas";
 import styles from "./Main.module.css";
 import { Link } from "react-router-dom";
 import CarouselDestacados from "./CarouselDestacados";
-import styles from "./styles.module.css";
 const Main = () => {
 	const handleLogout = () => {
 		localStorage.removeItem("token");

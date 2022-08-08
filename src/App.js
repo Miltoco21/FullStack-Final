@@ -1,9 +1,7 @@
 
-
-
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/Footer/Footer";
+// import Footer from "./Components/Footer/Footer";
 import Home from "./pages/Home";
 import Categorias from "./pages/Categorias";
 import PaginaDetalle from "./pages/PaginaDetalle";
@@ -32,7 +30,7 @@ function App() {
           <Route path="*" element={<Navigate replace to="/" />} />
           <Route path="/" element={<Navigate replace to="/login" />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
   
     </>
