@@ -6,6 +6,10 @@
   color: rgb(145, 1, 1);
 }
 
+.fonticon {
+  font-size: 150px;
+}
+
 .fontbold {
   font-weight: bold;
 }

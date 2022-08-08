@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState /* useEffect */ } from "react";
 import { Table, Button, Container } from "react-bootstrap";
-import UserModal from "../Modals/UserModal";
+import { Link } from "react-router-dom";
 import { PlusCircleFill, PencilFill, Trash3Fill } from "react-bootstrap-icons";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function UserTable() {
-
   let data = [
     {
       id: 1,
@@ -32,29 +33,34 @@ function UserTable() {
     },
   ];
 
-  const [showUser, setShowUser] = useState(false),
-    [ user, setUser] = useState(null),
-    [users, setUsers] = useState(data),
+  const [users, setUsers] = useState(data);
 
-    handleShow = () => setShowUser(true),
-    onEdit = item => {
-      console.log(item);
-      setUser(item);
-      setShowUser(true);
+  const loadData = async () => {
+      const response = await axios.get("http://localhost:/8080/api/get");
+      console.log("response :>> ", response);
+      setUsers(data);
     },
-
     onDelete = (id) => {
-      const arrayUser = users.filter(item => item.id !== id)
-      setUsers(arrayUser)
+      axios.delete(`http://localhost:/8080/user/delete/${id}`);
+      const arrayUser = users.filter((item) => item.id !== id);
+      setUsers(arrayUser);
+      toast.success("usuario eliminado");
+      setTimeout(() => loadData(), 500);
     };
+
+  /* useEffect(() => {
+      loadData();
+    }, []); */
 
   return (
     <Container>
       <div className="d-flex justify-content-end my-3">
-        <Button className="shadow" variant="danger" onClick={handleShow}>
-          <PlusCircleFill className="me-2" />
-          Agregar
-        </Button>
+        <Link to="/agregaruser">
+          <Button className="shadow rounded-pill pt-1" variant="danger">
+            <PlusCircleFill className="me-2" />
+            Agregar
+          </Button>
+        </Link>
       </div>
       <Table className="bg-white shadow" striped bordered hover responsive>
         <thead>
@@ -75,9 +81,11 @@ function UserTable() {
               <td>{item.email}</td>
               <td>{item.role}</td>
               <td>
-                <Button variant="link" onClick={() => onEdit(item)}>
-                  <PencilFill className="text-warning" />
-                </Button>
+                <Link to={`/editaruser/${item.id}`}>
+                  <Button variant="link">
+                    <PencilFill className="text-warning" />
+                  </Button>
+                </Link>
               </td>
               <td>
                 <Button variant="link" onClick={() => onDelete(item.id)}>
@@ -88,14 +96,6 @@ function UserTable() {
           ))}
         </tbody>
       </Table>
-      <UserModal
-        showUser={showUser}
-        setShowUser={setShowUser}
-        users={users}
-        setUsers={setUsers}
-        user={user}
-        setUser={setUser}
-      />
     </Container>
   );
 }
