@@ -1,4 +1,10 @@
+import React from "react";
+import { BrowserRouter, Routes } from "react-router-dom";
+import Header from "./Components/Header/Header";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css"
 
+<<<<<<< HEAD
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 // import Footer from "./Components/Footer/Footer";
@@ -10,9 +16,12 @@ import FullContenido from "./pages/FullContenido";
 import Registro from "./Components/Registro/Registro";
 import Login from "./Components/Login/Login";
 
+=======
+>>>>>>> navbar
 function App() {
   const user = localStorage.getItem("token");
   return (
+<<<<<<< HEAD
     <>
       <BrowserRouter>
         <Navbar />
@@ -36,6 +45,14 @@ function App() {
     </>
   )
 
+=======
+    <BrowserRouter>
+      <Header />
+      <Routes>
+      </Routes>
+    </BrowserRouter>
+  );
+>>>>>>> navbar
 }
 
 export default App;
