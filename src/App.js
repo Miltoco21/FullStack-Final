@@ -5,6 +5,8 @@ import "./App.css"
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
+import Admin from "./Components/Admin/Admin";
+import "./App.css";
 // import Footer from "./Components/Footer/Footer";
 import Home from "./pages/Home";
 import Categorias from "./pages/Categorias";
@@ -23,6 +25,7 @@ function App() {
         <Navbar />
         <Routes>
           {user && <Route path="/" element={<Home />} />}
+          <Route path="/admin" element={<Admin />} />
           <Route path="/registro" exact element={<Registro />} />
 			    <Route path="/login" exact element={<Login />} />
           <Route path="/categorias" element={<Categorias />} />
