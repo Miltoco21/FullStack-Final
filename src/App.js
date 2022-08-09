@@ -13,6 +13,7 @@ import FullContenido from "./pages/FullContenido";
 import Registro from "./Components/Registro/Registro";
 import Login from "./Components/Login/Login";
 import Error404 from "./pages/Error404";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           {user && <Route path="/" element={<Home />} />}
           <Route path="/admin" element={<Admin />} />
+          <Route path="/error404" element={<Error404 />} />
           <Route path="/registro" exact element={<Registro />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/categorias" element={<Categorias />} />
@@ -33,10 +35,10 @@ function App() {
             path="/detalleCategoria/:detalleId"
             element={<DetalleCategoria />}
           />
-          <Route path="*" element={<Navigate replace to="<Error404/>" />} />
+          <Route path="*" element={<Navigate replace to="/error404" />} />
           <Route path="/" element={<Navigate replace to="/login" />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </BrowserRouter>
     </>
   );

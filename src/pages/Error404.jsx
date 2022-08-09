@@ -1,10 +1,8 @@
 import React from "react";
 import Image from "../img/Image.jpeg";
 import { Container, Card } from "react-bootstrap";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-/* import { Link } from "react-router-dom";
- */
 const Error404 = () => {
   return (
     <>
@@ -44,11 +42,11 @@ const Error404 = () => {
                         Volver al inicio
                       </Link> */}
                   </div>
-                  {/* <Link to="/error"> */}
-                  <button type="button" className="btn btn-primary my-4">
-                    Volver
-                  </button>
-                  {/* </Link> */}
+                  <Link to="/">
+                    <button type="button" className="btn btn-primary my-4">
+                      Volver
+                    </button>
+                  </Link>
                 </div>
               </div>
             </Card>
