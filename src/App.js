@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./Components/Header/Header";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 import Admin from "./Components/Admin/Admin";
