@@ -3,6 +3,10 @@ import { Navbar, Container, Nav, Button, Image } from "react-bootstrap";
 import logo from "../../assets/img/logoStrangerFlix.png";
 import styles from "../Header/Header.module.css";
 function Header() {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
   return (
     <Navbar bg="dark" expand="lg">
       <Container fluid>
@@ -15,38 +19,26 @@ function Header() {
             <div className={styles.containerButtons}>
               <Button
                 variant="danger"
-                className={`${styles.botonSesion} rounded-pill ms-1 me-2`}
-              >
-                Iniciar sesion
-              </Button>
-              <Button
-                variant="danger"
                 className={`${styles.botonRegistro} rounded-pill ms-1 me-2`}
+                href="/"
               >
-                Registrarse
+                Home
               </Button>
               <Button
                 variant="danger"
                 className={`${styles.botonCategorias} rounded-pill ms-1 me-2`}
+                href="/categorias"
               >
                 Categorias
               </Button>
-            </div>
-            {/* <NavDropdown
-              title="Categorias"
-              id="basic-nav-dropdown"
-              className="me-5"
-            >
-              <NavDropdown.Item className="text-danger fontbold" href="/">
-                Peliculas
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                className="text-danger fontbold"
-                href="#action/3.4"
+              <Button
+                variant="danger"
+                className={`${styles.botonSesion} rounded-pill ms-1 me-2`}
+                onClick={handleLogout}
               >
-                Series
-              </NavDropdown.Item>
-            </NavDropdown> */}
+                Cerrar sesion
+              </Button>
+            </div>
           </Nav>
         </Navbar.Collapse>
       </Container>

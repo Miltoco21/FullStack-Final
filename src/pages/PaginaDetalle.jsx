@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import clientAxios from "../config/clientAxios";
 import styles from "./PaginaDetalle.module.css";
 import Loader from "../Loader/Loader";
-
+import Header from "../Components/Header/Header";
 const PaginaDetalle = () => {
   const { peliculaId } = useParams();
   const [movie, setMovie] = useState([]);
@@ -30,6 +30,7 @@ const PaginaDetalle = () => {
     <>
       {isLoader ? (
         <>
+          <Header />
           <div className={styles.detalleContainer}>
             <img
               className={`${styles.col} ${styles.detalleImagen}`}
@@ -80,20 +81,6 @@ const PaginaDetalle = () => {
                   Enviar
                 </button>
               </form>
-            </div>
-          </div>
-          <div className={`${styles.rowTrailer} row justify-content-center align-items-center flex-column my-4`}>
-            <h2 className="text-light text-center fw-bold my-5">
-              Trailer Oficial
-            </h2>
-            <div className={`${styles.containerVideo} col`}>
-              <iframe
-                className={`${styles.video} rounded`}
-                src={movie.trailer}
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              ></iframe>
             </div>
           </div>
         </>

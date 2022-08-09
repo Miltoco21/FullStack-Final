@@ -4,6 +4,7 @@ import clientAxios from "../../config/clientAxios";
 import PeliculaCard from "./PeliculaCard";
 import Loader from "../../Loader/Loader";
 import styles from "./GrillaPeliculas.module.css";
+import Button from "react-bootstrap/Button";
 
 const GrillaPeliculas = () => {
   const [movies, setMovies] = useState([]);
@@ -15,7 +16,7 @@ const GrillaPeliculas = () => {
       .get("/peliculas")
       .then((response) => {
         setMovies(response.data);
-        setMoviesAux(response.data)
+        setMoviesAux(response.data);
         setIsLoader(true);
       })
       .catch((err) => {
@@ -23,10 +24,22 @@ const GrillaPeliculas = () => {
       });
   };
 
+  const getPeliculasRenovadas = async () => {
+    await clientAxios
+      .get("/peliculas/getPeliculas")
+      .then((response) => {
+        setMovies(response.data);
+        setMoviesAux(response.data);
+        setIsLoader(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
     getPeliculas();
   }, []);
-  
+
   const handleFilter = (text) => {
     if (text.length >= 3) {
       const peliculasFiltradas = movies.filter((movie) => {
@@ -34,9 +47,9 @@ const GrillaPeliculas = () => {
           return movie;
         }
       });
-      setMoviesAux(peliculasFiltradas)
+      setMoviesAux(peliculasFiltradas);
     } else {
-      setMoviesAux(movies)
+      setMoviesAux(movies);
     }
   };
   return (
@@ -62,6 +75,15 @@ const GrillaPeliculas = () => {
       ) : (
         <Loader />
       )}
+      <div className="d-flex justify-content-center">
+        <Button
+          className="my-5"
+          onClick={() => getPeliculasRenovadas()}
+          variant="danger"
+        >
+          Actualizar Peliculas
+        </Button>
+      </div>
     </>
   );
 };

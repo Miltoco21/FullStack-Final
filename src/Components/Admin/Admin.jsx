@@ -1,49 +1,51 @@
-import React from "react";
-import { Tab, Nav, Row, Col, Container } from "react-bootstrap";
-import CategoryTable from "./Tables/CategoryTable";
-import UserTable from "./Tables/UserTable";
-import MovieTable from "./Tables/MovieTable";
-import "./Admin.css"
-
-function Admin() {
-
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Header from "../Header/Header";
+import styles from "./Admin.module.css";
+const Admin = () => {
   return (
-    <div className="fd">
-      <h1 className="text-center pt-5 titleadmin">Administrador</h1>
-      <Container className="mt-2 py-5">
-        <Tab.Container id="left-tabs-example" defaultActiveKey="users">
-          <Row>
-            <Col xs={12} md={3} className="mt-5">
-              <Nav variant="pills" className="flex-column bg-white">
-                <Nav.Item >
-                  <Nav.Link eventKey="users" href="#">
-                    Usuarios
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="categories" href="#">
-                    Categorias
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="movies" href="#">
-                    Peliculas
-                  </Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Col>
-            <Col xs={12} md={9}>
-              <Tab.Content>
-                <Tab.Pane eventKey="users"><UserTable/></Tab.Pane>
-                <Tab.Pane eventKey="categories"><CategoryTable/></Tab.Pane>
-                <Tab.Pane eventKey="movies"><MovieTable /></Tab.Pane>
-              </Tab.Content>
-            </Col>
-          </Row>
-        </Tab.Container>
-      </Container>
-    </div>
+    <>
+      <Header />
+      <div className="d-flex  justify-content-center align-items-center flex-wrap mt-5">
+        <Card className="m-4 bg-dark" style={{ width: "18rem" }}>
+          <Card.Img
+            variant="top"
+            src="https://conceptodefinicion.de/wp-content/uploads/2020/11/usuario.jpg"
+          />
+          <Card.Body className={styles.centradoBody}>
+            <Card.Title className="mb-3">Usuarios</Card.Title>
+            <Button href="/adminUsuarios" variant="danger">
+              Ir a Usuarios
+            </Button>
+          </Card.Body>
+        </Card>
+        <Card className="m-4 bg-dark" style={{ width: "18rem" }}>
+          <Card.Img
+            variant="top"
+            src="https://i.pinimg.com/originals/5b/aa/c5/5baac533db7c93113c40709ce2c176e0.jpg"
+          />
+          <Card.Body className={styles.centradoBody}>
+            <Card.Title className="mb-3">Categorias</Card.Title>
+            <Button href="/adminCategorias" variant="danger">
+              Ir a Categorias
+            </Button>
+          </Card.Body>
+        </Card>
+        <Card className="m-4 bg-dark" style={{ width: "18rem" }}>
+          <Card.Img
+            variant="top"
+            src="https://es.web.img3.acsta.net/r_654_368/newsv7/22/06/01/10/27/5428522.jpg"
+          />
+          <Card.Body className={styles.centradoBody}>
+            <Card.Title className="mb-3">Peliculas</Card.Title>
+            <Button href="/adminPeliculas" variant="danger">
+              Ir a Peliculas
+            </Button>
+          </Card.Body>
+        </Card>
+      </div>
+    </>
   );
-}
+};
 
 export default Admin;
