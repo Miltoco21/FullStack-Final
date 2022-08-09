@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Container } from "react-bootstrap";
-import MovieModal from "../Modals/MovieModal";
+import { Link } from "react-router-dom";
 import { PlusCircleFill, PencilFill, Trash3Fill } from "react-bootstrap-icons";
 import clientAxios from "../../../config/clientAxios";
 
@@ -57,18 +57,20 @@ function MovieTable() {
   return (
     <Container>
       <div className="d-flex justify-content-end my-3">
-        <Button className="shadow" variant="danger" onClick={handleShow}>
-          <PlusCircleFill className="me-2" />
-          Agregar
-        </Button>
+        <Link to="/agregarmovie">
+          <Button className="shadow rounded-pill pt-1" variant="danger">
+            <PlusCircleFill className="me-2" />
+            Agregar
+          </Button>
+        </Link>
       </div>
       <Table className="bg-white shadow" striped bordered hover responsive>
         <thead>
           <tr>
             <th>Fecha</th>
             <th>Titulo</th>
-            <th>Genero</th>
             <th>Descripcion</th>
+            <th>Genero</th>
             <th>Categoria</th>
             <th>Poster</th>
             <th>Editar</th>
@@ -76,18 +78,21 @@ function MovieTable() {
           </tr>
         </thead>
         <tbody>
-          {movies.map((item) => (
+        {movies.map((item) => (
             <tr key={item.id}>
               <td>{item.fecha}</td>
               <td>{item.titulo}</td>
               <td>{item.genero.join(", ")}</td>
               <td>{item.descripcion}</td>
+              <td>{item.genero}</td>
               <td>{item.categoria}</td>
               <td>{item.poster}</td>
               <td>
-                <Button variant="link" onClick={() => onEdit(item)}>
-                  <PencilFill className="text-warning" />
-                </Button>
+                <Link to={`/editarmovie/${item.id}`}>
+                  <Button variant="link">
+                    <PencilFill className="text-warning" />
+                  </Button>
+                </Link>
               </td>
               <td>
                 <Button variant="link" onClick={() => onDelete(item.id)}>
@@ -98,16 +103,9 @@ function MovieTable() {
           ))}
         </tbody>
       </Table>
-      <MovieModal
-        showMovie={showMovie}
-        setShowMovie={setShowMovie}
-        movie={movie}
-        setMovie={setMovie}
-        movies={movies}
-        setMovies={setMovies}
-      />
     </Container>
   );
 }
 
 export default MovieTable;
+

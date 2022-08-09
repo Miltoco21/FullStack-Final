@@ -6,6 +6,7 @@ import MovieTable from "./Tables/MovieTable";
 import "./Admin.css"
 
 function Admin() {
+
   return (
     <div className="fd">
       <h1 className="text-center pt-5 titleadmin">Administrador</h1>
