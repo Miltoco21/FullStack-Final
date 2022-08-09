@@ -1,53 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Button, Container } from "react-bootstrap";
 import UserModal from "../Modals/UserModal";
 import { PlusCircleFill, PencilFill, Trash3Fill } from "react-bootstrap-icons";
+import clientAxios from "../../../config/clientAxios";
 
 function UserTable() {
-
-  let data = [
-    {
-      id: 1,
-      nombre: "flor",
-      apellido: "dimarco",
-      email: "flor@gmail.com",
-      password: "sda",
-      role: "user",
-    },
-    {
-      id: 2,
-      nombre: "flor",
-      apellido: "dimarco",
-      email: "flor@gmail.com",
-      password: "sda",
-      role: "user",
-    },
-    {
-      id: 3,
-      nombre: "flor",
-      apellido: "dimarco",
-      email: "flor@gmail.com",
-      password: "sda",
-      role: "user",
-    },
-  ];
-
   const [showUser, setShowUser] = useState(false),
-    [ user, setUser] = useState(null),
-    [users, setUsers] = useState(data),
-
+    [user, setUser] = useState(null),
+    [users, setUsers] = useState([]),
     handleShow = () => setShowUser(true),
-    onEdit = item => {
+    onEdit = (item) => {
       console.log(item);
       setUser(item);
       setShowUser(true);
     },
-
     onDelete = (id) => {
-      const arrayUser = users.filter(item => item.id !== id)
-      setUsers(arrayUser)
+      const arrayUser = users.filter((item) => item.id !== id);
+      setUsers(arrayUser);
     };
-
+  useEffect(() => {
+    clientAxios.get("/registro").then((response) => {
+      setUsers(response.data);
+    });
+  }, []);
+  console.log(users);
   return (
     <Container>
       <div className="d-flex justify-content-end my-3">

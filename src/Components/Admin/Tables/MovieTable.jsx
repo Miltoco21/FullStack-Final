@@ -1,55 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Button, Container } from "react-bootstrap";
 import MovieModal from "../Modals/MovieModal";
 import { PlusCircleFill, PencilFill, Trash3Fill } from "react-bootstrap-icons";
+import clientAxios from "../../../config/clientAxios";
 
 function MovieTable() {
-  const dataMovie = [
-    {
-      id: 1,
-      fecha: "18/06/1991",
-      titulo: "asdas",
-      descripcion: "sadasdasdasd",
-      genero: ["a", "b", "c"],
-      categoria: "sda",
-      poster: "dasdasdasdasda",
-    },
-    {
-      id: 2,
-      fecha: "18/06/1991",
-      titulo: "asdas",
-      descripcion: "sadasdasdasd",
-      genero: ["a", "b", "c"],
-      categoria: "sda",
-      poster: "dasdasdasdasda",
-    },
-    {
-      id: 3,
-      fecha: "18/06/1991",
-      titulo: "asdas",
-      descripcion: "sadasdasdasd",
-      genero: ["a", "b", "c"],
-      categoria: "sda",
-      poster: "dasdasdasdasda",
-    },
-  ];
+  // const dataMovie = [
+  //   {
+  //     id: 1,
+  //     fecha: "18/06/1991",
+  //     titulo: "asdas",
+  //     descripcion: "sadasdasdasd",
+  //     genero: ["a", "b", "c"],
+  //     categoria: "sda",
+  //     poster: "dasdasdasdasda",
+  //   },
+  //   {
+  //     id: 2,
+  //     fecha: "18/06/1991",
+  //     titulo: "asdas",
+  //     descripcion: "sadasdasdasd",
+  //     genero: ["a", "b", "c"],
+  //     categoria: "sda",
+  //     poster: "dasdasdasdasda",
+  //   },
+  //   {
+  //     id: 3,
+  //     fecha: "18/06/1991",
+  //     titulo: "asdas",
+  //     descripcion: "sadasdasdasd",
+  //     genero: ["a", "b", "c"],
+  //     categoria: "sda",
+  //     poster: "dasdasdasdasda",
+  //   },
+  // ];
 
   const [showMovie, setShowMovie] = useState(false),
-    [movies, setMovies] = useState(dataMovie),
+    [movies, setMovies] = useState([]),
     [movie, setMovie] = useState(false),
-
     handleShow = () => setShowMovie(true),
-    onEdit = item => {
+    onEdit = (item) => {
       console.log(item);
       setMovie(item);
       setShowMovie(true);
     },
-
     onDelete = (id) => {
-      const arrayUser = movies.filter(item => item.id !== id)
-      setMovies(arrayUser)
+      const arrayUser = movies.filter((item) => item.id !== id);
+      setMovies(arrayUser);
     };
-
+  useEffect(() => {
+    clientAxios.get("/contenidoCategorias").then((response) => {
+      setMovies(response.data);
+    });
+  }, []);
+  console.log(movies);
   return (
     <Container>
       <div className="d-flex justify-content-end my-3">
@@ -76,7 +80,7 @@ function MovieTable() {
             <tr key={item.id}>
               <td>{item.fecha}</td>
               <td>{item.titulo}</td>
-              <td>{item.genero.map(i => i.length)}</td>
+              <td>{item.genero.join(", ")}</td>
               <td>{item.descripcion}</td>
               <td>{item.categoria}</td>
               <td>{item.poster}</td>
