@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-
+import Button from "react-bootstrap/Button";
 const Footer = () => {
   return (
     <div className="container-fluid  bg-dark text-white ">
@@ -31,10 +31,9 @@ const Footer = () => {
           <div className="row ">
             <span className="fw-bolder">Registrate Gratis</span>
             <span>
-              <button className="btn btn-outline-light d-flex justify-content-center p-2 ">
-                {" "}
-                Registrate{" "}
-              </button>
+              <Button href="/registro" variant="danger">
+                Registrate
+              </Button>
             </span>
           </div>
         </div>
