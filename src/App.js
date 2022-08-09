@@ -1,8 +1,6 @@
 import React from "react";
 import Header from "./Components/Header/Header";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./App.css"
-
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 import Admin from "./Components/Admin/Admin";
@@ -21,15 +19,15 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <Header/>
+        <Header />
         <Navbar />
         <Routes>
           {user && <Route path="/" element={<Home />} />}
           <Route path="/admin" element={<Admin />} />
           <Route path="/registro" exact element={<Registro />} />
-			    <Route path="/login" exact element={<Login />} />
+          <Route path="/login" exact element={<Login />} />
           <Route path="/categorias" element={<Categorias />} />
-          <Route path='/fullContenido/:categoria' element={<FullContenido />} />
+          <Route path="/fullContenido/:categoria" element={<FullContenido />} />
           <Route path="/pelicula/:peliculaId" element={<PaginaDetalle />} />
           <Route
             path="/detalleCategoria/:detalleId"
@@ -40,10 +38,8 @@ function App() {
         </Routes>
         {/* <Footer /> */}
       </BrowserRouter>
-  
     </>
-  )
-
+  );
 }
 
 export default App;
