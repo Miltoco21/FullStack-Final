@@ -11,11 +11,11 @@ function Header() {
     <Navbar bg="dark" expand="lg">
       <Container fluid>
         <Navbar.Brand href="/">
-          <Image src={logo} alt="logito" width={150} />
+          <Image src={logo} alt="logito" width={180} />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-secondary border-3 " />
+        <Navbar.Collapse id="basic-navbar-nav"  >
+          <Nav className="ms-auto  ">
             <div className={styles.containerButtons}>
               <Button
                 variant="danger"
@@ -33,10 +33,10 @@ function Header() {
               </Button>
               <Button
                 variant="danger"
-                className={`${styles.botonSesion} rounded-pill ms-1 me-2`}
+                className={`${styles.botonSesion} rounded-pill ms-1 me-2 my-2`}
                 onClick={handleLogout}
               >
-                Cerrar sesion
+                Cerrar sesión
               </Button>
             </div>
           </Nav>
