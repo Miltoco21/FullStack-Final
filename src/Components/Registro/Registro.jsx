@@ -52,7 +52,7 @@ const Registro = () => {
     try {
       const url = "http://localhost:8080/registro";
       const { data: res } = await axios.post(url, data);
-      console.log(res);
+      
 
       if (res.message === "1") {
         Swal.fire("Registro Exitoso!", "Usuario creado!", "success");
@@ -75,6 +75,7 @@ const Registro = () => {
         setError(error.response.data.message);
       }
     }
+    e.target.reset()
   };
 
   return (

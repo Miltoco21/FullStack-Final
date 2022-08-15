@@ -42,7 +42,7 @@
   -webkit-backdrop-filter: blur(5px);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  height: 27rem;
+  height: 29rem;
 }
 
 .left h1 {
@@ -64,7 +64,7 @@
   -webkit-backdrop-filter: blur(5px);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  height: 27rem;
+  height: 29rem;
 }
 
 .form_container {
@@ -127,11 +127,18 @@
   background-color: red;
   color: white;
   margin: 10px;
+  width: rem;
+  
+  justify-content: center;
+  margin-top: 1px;
+  
+  
+
 }
 .p {
   color: gray;
   padding-bottom: 1px;
-  font-size: 11px;
+  font-size: 10px;
 }
 
 .icon {
@@ -141,14 +148,9 @@
   position: fixed;
   width: min-content;
   padding: 0 0 0 0;
- 
+
   margin-left: 70%;
   margin-top: 5px;
-  
-  
-  
-  
-  
 }
 .inputbox {
   justify-content: center;
