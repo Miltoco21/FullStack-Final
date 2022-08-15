@@ -5,7 +5,7 @@ import styles from "../Header/Header.module.css";
 function Header() {
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.reload();
+    window.location= "/";
   };
   return (
     <Navbar bg="dark" expand="lg">
