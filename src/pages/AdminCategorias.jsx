@@ -79,7 +79,7 @@ const AdminCategorias = () => {
         </table>
       </div>
       <div className="d-flex justify-content-center mt-5">
-        <Button href="/admin" variant="danger">
+        <Button href="/admin" variant="danger" className="my-3">
           Volver a Administracion
         </Button>
       </div>

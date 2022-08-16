@@ -3,8 +3,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
+
 const Login = () => {
-  const [data, setData] = useState({ email: "", password: "" });
+  const [data, setData] = useState({ email: "", password: "" ,token:""});
   const [error, setError] = useState("");
 
   const handleChange = ({ currentTarget: input }) => {
@@ -16,9 +17,12 @@ const Login = () => {
     try {
       const url = "http://localhost:8080/login";
       const { data: res } = await axios.post(url, data);
-      console.log(data);
-      localStorage.setItem("token", res.data);
+      console.log(data,11);
       window.location = "/";
+      localStorage.setItem("token", res.token);
+      localStorage.setItem("user",JSON.stringify(res.data.payload));
+       
+      
     } catch (error) {
       if (
         error.response &&

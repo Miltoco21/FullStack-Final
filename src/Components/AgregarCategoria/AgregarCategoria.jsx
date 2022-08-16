@@ -72,7 +72,7 @@ const AgregarCategoria = () => {
             Agregar Categoria
           </button>
           <div className="d-flex justify-content-center mt-5">
-            <Button href="/adminCategorias" variant="danger">
+            <Button href="/adminCategorias" variant="danger" className="my-3">
               Volver a Categorias
             </Button>
           </div>
