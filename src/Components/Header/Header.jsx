@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Container, Nav, Button, Image } from "react-bootstrap";
 import logo from "../../assets/img/logoStrangerFlix.png";
+import logoToggler from '../../assets/img/toggler-popcorn.png'
 import styles from "../Header/Header.module.css";
 function Header() {
   const handleLogout = () => {
@@ -13,7 +14,7 @@ function Header() {
         <Navbar.Brand href="/">
           <Image src={logo} alt="logito" width={180} />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-secondary border-3 " />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className={`${styles.toggleEfecto} border-3`}><img src={logoToggler} alt="logoToggler" /></Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav"  >
           <Nav className="ms-auto  ">
             <div className={styles.containerButtons}>
@@ -23,6 +24,13 @@ function Header() {
                 href="/"
               >
                 Home
+              </Button>
+              <Button
+                variant="danger"
+                className={`${styles.botonAdmin} rounded-pill ms-1 me-2`}
+                href="/admin"
+              >
+                Administracion
               </Button>
               <Button
                 variant="danger"

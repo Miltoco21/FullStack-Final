@@ -20,7 +20,9 @@ const AdminPeliculas = () => {
       .then((response) => setFullPeliculas(response.data));
   }, [flag]);
   const eliminarPelicula = (id) => {
-    if (window.confirm("Estas completamente seguro de eliminar esta pelicula?")) {
+    if (
+      window.confirm("Estas completamente seguro de eliminar esta pelicula?")
+    ) {
       clientAxios
         .delete(`/contenidoCategorias/eliminar/${id}`)
         .then((response) => {
@@ -222,7 +224,7 @@ const AdminPeliculas = () => {
         </div>
       </div>
       <div className="d-flex justify-content-center mt-5">
-        <Button href="/adamin" variant="danger">
+        <Button href="/admin" variant="danger">
           Volver a Administracion
         </Button>
       </div>
