@@ -3,9 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
-
 const Login = () => {
-  const [data, setData] = useState({ email: "", password: "" ,token:""});
+  const [data, setData] = useState({ email: "", password: "", token: "" });
   const [error, setError] = useState("");
 
   const handleChange = ({ currentTarget: input }) => {
@@ -17,12 +16,10 @@ const Login = () => {
     try {
       const url = "http://localhost:8080/login";
       const { data: res } = await axios.post(url, data);
-      console.log(data,11);
-      window.location = "/";
+      console.log(data, 11);
       localStorage.setItem("token", res.token);
-      localStorage.setItem("user",JSON.stringify(res.data.payload));
-       
-      
+      localStorage.setItem("user", JSON.stringify(res.payload));
+      window.location = "/";
     } catch (error) {
       if (
         error.response &&
@@ -73,21 +70,18 @@ const Login = () => {
         </div>
         <div className={`${styles.right} col my-5  `}>
           <div className="col">
-            <h1 className="text-center" > Eres nuevo?</h1>
-          <div className="col  d-flex justify-content-center align-content-center my-5"> 
-            <Link to="/registro">
-            <button
-              type="button"
-              className={`${styles.white_btn} justify-content-center `}
-            >
-              Registrate
-            </button>
-            </Link>
-
+            <h1 className="text-center"> Eres nuevo?</h1>
+            <div className="col  d-flex justify-content-center align-content-center my-5">
+              <Link to="/registro">
+                <button
+                  type="button"
+                  className={`${styles.white_btn} justify-content-center `}
+                >
+                  Registrate
+                </button>
+              </Link>
+            </div>
           </div>
-          </div>
-          
-          
         </div>
       </div>
     </div>

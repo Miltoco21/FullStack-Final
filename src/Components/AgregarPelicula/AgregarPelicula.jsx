@@ -58,7 +58,7 @@ const AgregarPelicula = () => {
   };
   return (
     <>
-      <div className="container my-5">
+      <div className="container my-5 d-flex flex-column">
         <h2 className="text-light text-center">Describe la pelicula:</h2>
         <form onSubmit={handleForm} className="d-flex justify-content-center">
           <div className="row flex-column">
@@ -108,8 +108,8 @@ const AgregarPelicula = () => {
                 Descripcion
               </label>
               <textarea
-                cols={50}
-                maxLength={500}
+                cols={30}
+                maxLength={300}
                 rows={6}
                 className={`ms-3`}
                 type="text"
@@ -145,7 +145,7 @@ const AgregarPelicula = () => {
               />
             </div>
             <button className="btn btn-success" type="submit">
-              Agregar Juego
+              Agregar Pelicula
             </button>
           </div>
         </form>

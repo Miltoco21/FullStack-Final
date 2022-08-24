@@ -33,8 +33,8 @@ const AdminUsuarios = () => {
         })
         .catch((error) => {
           Swal.fire({
-            icon: "success",
-            title: "Usuario eliminado",
+            icon: "error",
+            title: `${error.response.data.mensaje}`,
             showConfirmButton: false,
             timer: 1500,
           });
@@ -56,8 +56,8 @@ const AdminUsuarios = () => {
             </tr>
           </thead>
           <tbody>
-            {usuarios.map((user, i) => (
-              <tr>
+            {usuarios.map((user) => (
+              <tr key={user._id}>
                 <td className="text-light">{user.email}</td>
                 <td className="text-light">{user.role}</td>
                 <td>

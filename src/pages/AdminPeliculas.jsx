@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import Button from "react-bootstrap/Button";
 import clientAxios from "../config/clientAxios";
 import styles from "./AdminPeliculas.module.css";
+import truncate from "../helpers/truncate";
 const AdminPeliculas = () => {
   const [fullPeliculas, setFullPeliculas] = useState([]);
   const [peliculaEditada, setPeliculaEditada] = useState({
@@ -63,13 +64,14 @@ const AdminPeliculas = () => {
         if (response.status === 200) {
           alert("pelicula editada correctamente");
         } else {
-          alert("Ha ocurrido un error y no se pudo editar la pelicula");
+          alert(`Ha ocurrido un error y no se pudo editar la pelicula:${response.mensaje}`);
         }
         setFlag(!flag);
         e.target.reset();
       })
       .catch((error) => {
-        alert("Ha ocurrido un error y no se pudo editar la pelicula");
+        console.log(error);
+        alert(`Ha ocurrido un error y no se pudo editar la pelicula:${error.response.data.mensaje}`);
       });
   };
   const handleChange = (e) => {
@@ -91,7 +93,7 @@ const AdminPeliculas = () => {
         </Button>
       </div>
       <div className="container">
-        <div class="table-responsive">
+        <div className="table-responsive">
           <table className="table">
             <thead>
               <tr className="text-light">
@@ -111,7 +113,9 @@ const AdminPeliculas = () => {
                   <td className="text-light">{pelicula.id}</td>
                   <td className="text-light">{pelicula.titulo}</td>
                   <td className="text-light">{pelicula.fecha}</td>
-                  <td className="text-light">{pelicula.descripcion}</td>
+                  <td className="text-light">
+                    {truncate(pelicula.descripcion)}
+                  </td>
                   <td className="text-light">{pelicula.categoria}</td>
                   <td className="text-light">{pelicula.poster}</td>
                   <td>
@@ -223,7 +227,7 @@ const AdminPeliculas = () => {
           </table>
         </div>
       </div>
-      <div className="d-flex justify-content-center mt-5">
+      <div className="d-flex justify-content-center my-5 ">
         <Button href="/admin" variant="danger">
           Volver a Administracion
         </Button>

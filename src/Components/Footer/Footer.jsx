@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className=" container-fluid bg-dark text-white ">
@@ -8,29 +9,29 @@ const Footer = () => {
         <div className="container-fluid col-2 d-flex justify-content-center">
           <div className="row">
             <span className="fw-bolder">Información</span>
-            <span>Acerca de nosotros</span>
-            <span>Avisos legales</span>
-            <span>Ayuda</span>
+            <Link to={"/error404"}>Acerca de nosotros</Link>
+            <Link to={"/error404"}>Avisos Legales</Link>
+            <Link to={"/error404"}>Ayuda</Link>
           </div>
         </div>
         <div className="col col-3 d-flex justify-content-center ">
           <div className="row">
             <span className="fw-bolder">Productos</span>
-            <span>Cuenta Familiar</span>
-            <span>Tarjetas de regalo</span>
-            <span>Plan Premium</span>
+            <Link to={"/error404"}>Cuenta Familiar</Link>
+            <Link to={"/error404"}>Tarjetas de regalo</Link>
+            <Link to={"/error404"}>Plan Premium</Link>
           </div>
         </div>
         <div className="col  d-flex justify-content-center">
           <div className="row">
             <span className="fw-bolder">Trabaja con nosotros</span>
-            <span>Carreras</span>
+            <Link to={"/error404"}>Carreras</Link>
           </div>
         </div>
         <div className="col    d-flex justify-content-center">
           <div className="row ">
             <span className="fw-bolder">Registrate Gratis</span>
-            <div >
+            <div>
               <Button
                 href="/registro"
                 variant="danger"
@@ -47,14 +48,19 @@ const Footer = () => {
       <div className="container-fluid row">
         <div className="col-container-fluid">
           <div className="col d-flex justify-content-evenly">
-            <i class="bi bi-twitter"></i>
-            
-            <i class="bi bi-meta"></i>
-            <i class="bi bi-github"></i>
-            <i class="bi bi-instagram"></i>
-            
+            <Link to={"/error404"}>
+              <i className="bi bi-twitter"></i>
+            </Link>
+            <Link to={"/error404"}>
+              <i className="bi bi-meta"></i>
+            </Link>
+            <Link to={"/error404"}>
+              <i className="bi bi-github"></i>
+            </Link>
+            <Link to={"/error404"}>
+              <i className="bi bi-instagram"></i>
+            </Link>
           </div>
-          
         </div>
       </div>
       <hr />

@@ -1,7 +1,12 @@
 .toggleEfecto:hover{
   border-color: red !important;
 }
-
+.botonAdminVisible{
+  display: block;
+}
+.botonAdminNone{
+  display: none;
+}
 
 @media (max-width: 425px) {
   .containerButtons {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -19,47 +19,49 @@ import AgregarPelicula from "./Components/AgregarPelicula/AgregarPelicula";
 // import clientAxios from "./config/clientAxios";
 
 function App() {
-  const user = localStorage.getItem("token");
-
-  // const [roles, setRoles] = useState();
-  // useEffect(() => {
-  //   clientAxios.get("/registro/getRoles").then((response) => {
-  //     setRoles(response.data);
-  //   });
-  // }, []);
-  // localStorage.setItem("email", `${roles.email}`);
-  // localStorage.setItem("role", `${roles.role}`);
-
-  // console.log(roles);
+  const [user] = useState(JSON.parse(localStorage.getItem("user")));
   return (
     <>
       <BrowserRouter>
         <Routes>
           {user && <Route path="/" element={<Home />} />}
-          {user && <Route path="/admin" element={<Admin />} />}
+          {user && user.role === "admin" && (
+            <Route path="/admin" element={<Admin />} />
+          )}
           <Route path="/error404" element={<Error404 />} />
           <Route path="/registro" exact element={<Registro />} />
           <Route path="/login" exact element={<Login />} />
-          <Route path="/categorias" element={<Categorias />} />
-          <Route path="/fullContenido/:categoria" element={<FullContenido />} />
-          <Route path="/pelicula/:peliculaId" element={<PaginaDetalle />} />
-          <Route
-            path="/detalleCategoria/:detalleId"
-            element={<DetalleCategoria />}
-          />
+          {user && <Route path="/categorias" element={<Categorias />} />}
+          {user && (
+            <Route
+              path="/fullContenido/:categoria"
+              element={<FullContenido />}
+            />
+          )}
+          {user && (
+            <Route path="/pelicula/:peliculaId" element={<PaginaDetalle />} />
+          )}
+          {user && (
+            <Route
+              path="/detalleCategoria/:detalleId"
+              element={<DetalleCategoria />}
+            />
+          )}
           <Route path="*" element={<Navigate replace to="/error404" />} />
           <Route path="/" element={<Navigate replace to="/login" />} />
-          {user && (
+          {user && user.role === "admin" && (
             <Route path="/adminCategorias" element={<AdminCategorias />} />
           )}
-          {user && (
+          {user && user.role === "admin" && (
             <Route path="/adminPeliculas" element={<AdminPeliculas />} />
           )}
-          {user && <Route path="/adminUsuarios" element={<AdminUsuarios />} />}
-          {user && (
+          {user && user.role === "admin" && (
+            <Route path="/adminUsuarios" element={<AdminUsuarios />} />
+          )}
+          {user && user.role === "admin" && (
             <Route path="/agregarCategoria" element={<AgregarCategoria />} />
           )}
-          {user && (
+          {user && user.role === "admin" && (
             <Route path="/agregarPelicula" element={<AgregarPelicula />} />
           )}
         </Routes>

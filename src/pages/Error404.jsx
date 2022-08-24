@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "../img/Image.jpeg";
+import Image from "../assets/img/error.jpg";
 import { Container, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 

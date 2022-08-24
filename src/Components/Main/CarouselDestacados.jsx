@@ -81,9 +81,9 @@ const CarouselDestacados = () => {
             </p>
           </div>
         </div>
-        {movieCarousel.map((destacado) => {
+        {movieCarousel.map((destacado, i) => {
           return (
-            <div className="carousel-item">
+            <div className="carousel-item" key={i}>
               <img
                 src={destacado.imgFondo}
                 className={styles.imgCarousel}

@@ -45,6 +45,8 @@ const GrillaPeliculas = () => {
       const peliculasFiltradas = movies.filter((movie) => {
         if (movie.titulo.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
           return movie;
+        }else{
+          return null
         }
       });
       setMoviesAux(peliculasFiltradas);

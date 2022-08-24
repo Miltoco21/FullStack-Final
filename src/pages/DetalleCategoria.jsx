@@ -18,15 +18,6 @@ const DetalleCategoria = () => {
         setDetalle(response.data);
         setIsLoader(true);
       });
-
-    // fetch(
-    //   `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=es-MX`
-    // )
-    //   .then((response) => response.json())
-    //   .then((response) => {
-    //     setGeneros(response.genres);
-    //     console.log(generos);
-    //   });
   }, [detalleId]);
   return (
     <>
@@ -49,7 +40,7 @@ const DetalleCategoria = () => {
               </p>
               <p>
                 <strong>Genero:</strong>
-                {detalle.genero}
+                {detalle.genero.join(", ")}
               </p>
               <p>
                 <strong>Fecha de Estreno: </strong>
@@ -57,29 +48,32 @@ const DetalleCategoria = () => {
               </p>
               <form>
                 <h2>Deja tu comentario:</h2>
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">
+                <div className="mb-3">
+                  <label for="exampleFormControlInput1" className="form-label">
                     Email
                   </label>
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="exampleFormControlInput1"
                     placeholder="name@example.com"
                     required
                   />
                 </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">
+                <div className="mb-3">
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
                     Reseña
                   </label>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     id="exampleFormControlTextarea1"
                     rows="3"
                   ></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" className="btn btn-danger">
                   Enviar
                 </button>
               </form>
