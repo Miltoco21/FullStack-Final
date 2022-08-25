@@ -71,8 +71,10 @@ const GrillaPeliculas = () => {
       </form>
       {isLoader ? (
         <ul className={styles.peliculasGrid}>
-          {moviesAux.map((movie) => (
-            <PeliculaCard key={movie.id} movie={movie} />
+          {moviesAux.map((movie, i) => (
+            <div key={i}>
+              <PeliculaCard movie={movie} />
+            </div>
           ))}
         </ul>
       ) : (
