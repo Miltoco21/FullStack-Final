@@ -9,6 +9,7 @@ import FullContenido from "./pages/FullContenido";
 import Registro from "./Components/Registro/Registro";
 import Login from "./Components/Login/Login";
 import Error404 from "./pages/Error404";
+import Header from "../src/Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Admin from "./Components/Admin/Admin";
 import AdminCategorias from "./pages/AdminCategorias";
@@ -23,6 +24,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        {user && <Header />}
         <Routes>
           {user && <Route path="/" element={<Home />} />}
           {user && user.role === "admin" && (
@@ -65,7 +67,7 @@ function App() {
             <Route path="/agregarPelicula" element={<AgregarPelicula />} />
           )}
         </Routes>
-        <Footer />
+        {user && <Footer />}
       </BrowserRouter>
     </>
   );

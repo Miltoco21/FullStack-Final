@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import clientAxios from "../config/clientAxios";
 import styles from "./PaginaDetalle.module.css";
 import Loader from "../Loader/Loader";
-import Header from "../Components/Header/Header";
 
 const DetalleCategoria = () => {
   const { detalleId } = useParams();
@@ -23,7 +22,6 @@ const DetalleCategoria = () => {
     <>
       {isLoader ? (
         <>
-          <Header />
           <div className={styles.detalleContainer}>
             <img
               className={`${styles.col} ${styles.detalleImagen}`}
@@ -45,7 +43,10 @@ const DetalleCategoria = () => {
               <form>
                 <h2>Deja tu comentario:</h2>
                 <div className="mb-3">
-                  <label htmlFor="exampleFormControlInput1" className="form-label">
+                  <label
+                    htmlFor="exampleFormControlInput1"
+                    className="form-label"
+                  >
                     Email
                   </label>
                   <input

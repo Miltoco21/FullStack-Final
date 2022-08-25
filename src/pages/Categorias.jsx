@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import styles from "./Categorias.module.css";
 import clientAxios from "../config/clientAxios";
 import GridCategorias from "../Components/GridCategorias/GridCategorias";
-import Header from "../Components/Header/Header";
 const Categorias = () => {
   const [categorias, setCategorias] = useState([]);
   useEffect(() => {
@@ -12,13 +11,10 @@ const Categorias = () => {
   }, []);
   return (
     <>
-      <Header />
       <div>
         <h1 className={styles.titulo}>Categorias</h1>
-        {categorias.map((categoria,i) => {
-          return (
-            <GridCategorias key={i} categoria={categoria.name} />
-          );
+        {categorias.map((categoria, i) => {
+          return <GridCategorias key={i} categoria={categoria.name} />;
         })}
       </div>
     </>

@@ -1,11 +1,9 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Header from "../Header/Header";
 import styles from "./Admin.module.css";
 const Admin = () => {
   return (
     <>
-      <Header />
       <div className="d-flex  justify-content-center align-items-center flex-wrap mt-5">
         <Card className="m-4 bg-dark" style={{ width: "18rem" }}>
           <Card.Img

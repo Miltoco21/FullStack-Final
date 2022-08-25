@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import clientAxios from "../config/clientAxios";
 import styles from "./PaginaDetalle.module.css";
 import Loader from "../Loader/Loader";
-import Header from "../Components/Header/Header";
+
 const PaginaDetalle = () => {
   const { peliculaId } = useParams();
   const [movie, setMovie] = useState([]);
@@ -21,7 +21,6 @@ const PaginaDetalle = () => {
     <>
       {isLoader ? (
         <>
-          <Header />
           <div className={styles.detalleContainer}>
             <img
               className={`${styles.col} ${styles.detalleImagen}`}

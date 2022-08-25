@@ -80,7 +80,7 @@ const AdminCategorias = () => {
       </div>
       <div className="d-flex justify-content-center mt-5">
         <Button href="/admin" variant="danger" className="my-3">
-          Volver a Administracionn
+          Volver a Administracion
         </Button>
       </div>
     </div>

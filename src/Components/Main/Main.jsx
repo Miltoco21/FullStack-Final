@@ -1,17 +1,14 @@
 import React from "react";
 import GrillaPeliculas from "./GrillaPeliculas";
 import styles from "./Main.module.css";
-import { Link } from "react-router-dom";
 import CarouselDestacados from "./CarouselDestacados";
-import Header from "../Header/Header";
 const Main = () => {
   return (
     <>
-      <Header />
       <CarouselDestacados />
-      <Link to="/">
-        <h1 className={styles.title}>Peliculas Populares</h1>
-      </Link>
+
+      <h1 className={styles.title}>Peliculas Populares</h1>
+
       <GrillaPeliculas />
     </>
   );
