@@ -7,6 +7,7 @@ import styles from "./GrillaPeliculas.module.css";
 import Button from "react-bootstrap/Button";
 
 const GrillaPeliculas = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   const [movies, setMovies] = useState([]);
   const [moviesAux, setMoviesAux] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
@@ -18,7 +19,6 @@ const GrillaPeliculas = () => {
         setMovies(response.data);
         setMoviesAux(response.data);
         setIsLoader(true);
-
       })
       .catch((err) => {
         console.log(err);
@@ -46,8 +46,8 @@ const GrillaPeliculas = () => {
       const peliculasFiltradas = movies.filter((movie) => {
         if (movie.titulo.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
           return movie;
-        }else{
-          return null
+        } else {
+          return null;
         }
       });
       setMoviesAux(peliculasFiltradas);
@@ -78,15 +78,19 @@ const GrillaPeliculas = () => {
       ) : (
         <Loader />
       )}
-      <div className="d-flex justify-content-center">
-        <Button
-          className="my-5"
-          onClick={() => getPeliculasRenovadas()}
-          variant="danger"
-        >
-          Actualizar Peliculas
-        </Button>
-      </div>
+      {user.role === "admin" ? (
+        <div className="d-flex justify-content-center">
+          <Button
+            className="my-5"
+            onClick={() => getPeliculasRenovadas()}
+            variant="danger"
+          >
+            Actualizar Peliculas
+          </Button>
+        </div>
+      ) : (
+        false
+      )}
     </>
   );
 };

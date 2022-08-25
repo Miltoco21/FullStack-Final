@@ -31,12 +31,12 @@ const AdminPeliculas = () => {
             Swal.fire({
               icon: "error",
               title: "Error",
-              text: "Ha ocurrido un error y no se pudo eliminar el juego",
+              text: "Ha ocurrido un error y no se pudo eliminar la pelicula",
             });
           } else {
             Swal.fire({
               icon: "success",
-              title: "Juego eliminado",
+              title: "Pelicula eliminada",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -47,10 +47,10 @@ const AdminPeliculas = () => {
           Swal.fire({
             icon: "error",
             title: "Error",
-            text: "Ha ocurrido un error y no se pudo eliminar el juego",
+            text: "Ha ocurrido un error y no se pudo eliminar la pelicula",
           });
         });
-    } 
+    }
   };
 
   const handleForm = (e) => {
@@ -62,20 +62,30 @@ const AdminPeliculas = () => {
       )
       .then((response) => {
         if (response.status === 200) {
-          alert("pelicula editada correctamente");
+          Swal.fire({
+            icon: "success",
+            title: "Pelicula editada correctamente",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         } else {
-          alert(
-            `Ha ocurrido un error y no se pudo editar la pelicula:${response.mensaje}`
-          );
+          Swal.fire({
+            icon: "error",
+            title: "Ocurrior un error y no se pudo editar",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
         setFlag(!flag);
         e.target.reset();
       })
       .catch((error) => {
-        console.log(error);
-        alert(
-          `Ha ocurrido un error y no se pudo editar la pelicula:${error.response.data.mensaje}`
-        );
+        Swal.fire({
+          icon: "error",
+          title: `${error.response.data.mensaje}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
   const handleChange = (e) => {
