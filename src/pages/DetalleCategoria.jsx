@@ -39,17 +39,13 @@ const DetalleCategoria = () => {
                 <strong>Descripcion:</strong> {detalle.descripcion}
               </p>
               <p>
-                <strong>Genero:</strong>
-                {detalle.genero.join(", ")}
-              </p>
-              <p>
                 <strong>Fecha de Estreno: </strong>
                 {detalle.fecha}
               </p>
               <form>
                 <h2>Deja tu comentario:</h2>
                 <div className="mb-3">
-                  <label for="exampleFormControlInput1" className="form-label">
+                  <label htmlFor="exampleFormControlInput1" className="form-label">
                     Email
                   </label>
                   <input
@@ -62,7 +58,7 @@ const DetalleCategoria = () => {
                 </div>
                 <div className="mb-3">
                   <label
-                    for="exampleFormControlTextarea1"
+                    htmlFor="exampleFormControlTextarea1"
                     className="form-label"
                   >
                     Reseña

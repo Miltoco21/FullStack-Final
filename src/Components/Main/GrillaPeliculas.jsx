@@ -18,6 +18,7 @@ const GrillaPeliculas = () => {
         setMovies(response.data);
         setMoviesAux(response.data);
         setIsLoader(true);
+
       })
       .catch((err) => {
         console.log(err);

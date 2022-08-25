@@ -16,8 +16,8 @@ const GridCategorias = ({ categoria }) => {
       <div className="container">
         <div className="row justify-content-around shadow rounded my-3 pb-3">
           <p className="fs-1 text-center text-light">{categoria}</p>
-          {contenido.map((data) => {
-            return <Cards contenido={data} key={contenido.id} />;
+          {contenido.map((data,i) => {
+            return <Cards contenido={data} key={i} />;
           })}
           <Link to={`/fullContenido/${categoria}`}>
             <button className={`${styles.boton} text-end mt-4`}>

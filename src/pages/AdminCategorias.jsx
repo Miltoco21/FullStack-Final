@@ -63,7 +63,7 @@ const AdminCategorias = () => {
           </thead>
           <tbody>
             {categorias.map((categoria, i) => (
-              <tr>
+              <tr key={i}>
                 <td className="text-light">{categoria.name}</td>
                 <td>
                   <button

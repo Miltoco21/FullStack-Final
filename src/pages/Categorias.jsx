@@ -15,9 +15,9 @@ const Categorias = () => {
       <Header />
       <div>
         <h1 className={styles.titulo}>Categorias</h1>
-        {categorias.map((categoria) => {
+        {categorias.map((categoria,i) => {
           return (
-            <GridCategorias key={categoria.id} categoria={categoria.name} />
+            <GridCategorias key={i} categoria={categoria.name} />
           );
         })}
       </div>

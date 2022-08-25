@@ -47,7 +47,7 @@ const PaginaDetalle = () => {
               <form>
                 <h2>Deja tu comentario:</h2>
                 <div className="mb-3">
-                  <label for="exampleFormControlInput1" className="form-label">
+                  <label htmlFor="exampleFormControlInput1" className="form-label">
                     Email
                   </label>
                   <input
@@ -59,7 +59,7 @@ const PaginaDetalle = () => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleFormControlTextarea1" className="form-label">
+                  <label htmlFor="exampleFormControlTextarea1" className="form-label">
                     Reseña
                   </label>
                   <textarea

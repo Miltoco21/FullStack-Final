@@ -50,7 +50,7 @@ const AdminPeliculas = () => {
             text: "Ha ocurrido un error y no se pudo eliminar el juego",
           });
         });
-    }
+    } 
   };
 
   const handleForm = (e) => {
@@ -64,14 +64,18 @@ const AdminPeliculas = () => {
         if (response.status === 200) {
           alert("pelicula editada correctamente");
         } else {
-          alert(`Ha ocurrido un error y no se pudo editar la pelicula:${response.mensaje}`);
+          alert(
+            `Ha ocurrido un error y no se pudo editar la pelicula:${response.mensaje}`
+          );
         }
         setFlag(!flag);
         e.target.reset();
       })
       .catch((error) => {
         console.log(error);
-        alert(`Ha ocurrido un error y no se pudo editar la pelicula:${error.response.data.mensaje}`);
+        alert(
+          `Ha ocurrido un error y no se pudo editar la pelicula:${error.response.data.mensaje}`
+        );
       });
   };
   const handleChange = (e) => {
@@ -109,7 +113,7 @@ const AdminPeliculas = () => {
             </thead>
             <tbody>
               {fullPeliculas.map((pelicula, i) => (
-                <tr>
+                <tr key={i}>
                   <td className="text-light">{pelicula.id}</td>
                   <td className="text-light">{pelicula.titulo}</td>
                   <td className="text-light">{pelicula.fecha}</td>
@@ -132,7 +136,7 @@ const AdminPeliculas = () => {
                       id={`modal-${pelicula._id}`}
                       data-bs-backdrop="static"
                       data-bs-keyboard="false"
-                      tabindex="-1"
+                      tabIndex="-1"
                       aria-labelledby="staticBackdropLabel"
                       aria-hidden="true"
                     >
