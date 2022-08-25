@@ -37,17 +37,16 @@ const PaginaDetalle = () => {
                 <strong>Descripcion:</strong> {movie.descripcion}
               </p>
               <p>
-                <strong>Genero: </strong>
-                {movie.genero.join(", ")}
-              </p>
-              <p>
                 <strong>Fecha de Estreno: </strong>
                 {movie.fecha}
               </p>
               <form>
                 <h2>Deja tu comentario:</h2>
                 <div className="mb-3">
-                  <label htmlFor="exampleFormControlInput1" className="form-label">
+                  <label
+                    htmlFor="exampleFormControlInput1"
+                    className="form-label"
+                  >
                     Email
                   </label>
                   <input
@@ -59,7 +58,10 @@ const PaginaDetalle = () => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="exampleFormControlTextarea1" className="form-label">
+                  <label
+                    htmlFor="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
                     Reseña
                   </label>
                   <textarea
