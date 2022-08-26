@@ -1,11 +1,11 @@
 import { useState } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import Swal from "sweetalert2";
 import { Icon } from "react-icons-kit";
 import { eye } from "react-icons-kit/feather/eye";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import clientAxios from "../../config/clientAxios";
 
 const Registro = () => {
   const [data, setData] = useState({
@@ -50,22 +50,29 @@ const Registro = () => {
     }
 
     try {
-      const url = "http://localhost:8080/registro";
-      const { data: res } = await axios.post(url, data);
-      
-
-      if (res.message === "1") {
-        Swal.fire("Registro Exitoso!", "Usuario creado!", "success");
-        navigate("/login");
-      } else {
-        Swal.fire(
-          "Registro fallido!",
-          "Este mail ya existe por otro usuario!",
-          "error"
-        );
-      }
-
-      console.log(res.message);
+      await clientAxios
+        .post("/registro", {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          password: data.password,
+        })
+        .then((response) => {
+          if (response.data.message === "1") {
+            Swal.fire("Registro Exitoso!", "Usuario creado!", "success");
+            navigate("/login");
+          } else {
+            Swal.fire(
+              "Registro fallido!",
+              "Este mail ya existe por otro usuario!",
+              "error"
+            );
+          }
+          console.log(response.message);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } catch (error) {
       if (
         error.response &&
@@ -75,7 +82,7 @@ const Registro = () => {
         setError(error.response.data.message);
       }
     }
-    e.target.reset()
+    e.target.reset();
   };
 
   return (
@@ -144,8 +151,8 @@ const Registro = () => {
 
             <p className={styles.p}>
               *La contraseña debe tener al entre 8 y 16 caracteres, al menos un
-              dígito, al menos una minúscula y al menos una mayúscula. 
-              Puede tener otros símbolos
+              dígito, al menos una minúscula y al menos una mayúscula. Puede
+              tener otros símbolos
             </p>
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.green_btn}>

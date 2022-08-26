@@ -1,7 +1,8 @@
 import { useState } from "react";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
+import clientAxios from "../../config/clientAxios";
 
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "", token: "" });
@@ -14,12 +15,18 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:8080/login";
-      const { data: res } = await axios.post(url, data);
-      console.log(data, 11);
-      localStorage.setItem("token", res.token);
-      localStorage.setItem("user", JSON.stringify(res.payload));
-      window.location = "/";
+      clientAxios
+        .post("/login", {
+          email: data.email,
+          password: data.password,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            window.location = "/";
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("user", JSON.stringify(response.data.payload));
+          }
+        });
     } catch (error) {
       if (
         error.response &&
