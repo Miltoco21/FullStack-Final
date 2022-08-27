@@ -1,12 +1,12 @@
 import React from "react";
-import "./Footer.css";
+// import "./Footer.css";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className=" container-fluid bg-dark text-white ">
-      <div className=" row">
-        <div className="container-fluid col-2 d-flex justify-content-center">
+      <div className="row">
+        <div className="container-fluid col d-flex justify-content-center">
           <div className="row">
             <span className="fw-bolder">Información</span>
             <Link to={"/error404"}>Acerca de nosotros</Link>
@@ -14,21 +14,8 @@ const Footer = () => {
             <Link to={"/error404"}>Ayuda</Link>
           </div>
         </div>
-        <div className="col col-3 d-flex justify-content-center ">
-          <div className="row">
-            <span className="fw-bolder">Productos</span>
-            <Link to={"/error404"}>Cuenta Familiar</Link>
-            <Link to={"/error404"}>Tarjetas de regalo</Link>
-            <Link to={"/error404"}>Plan Premium</Link>
-          </div>
-        </div>
-        <div className="col  d-flex justify-content-center">
-          <div className="row">
-            <span className="fw-bolder">Trabaja con nosotros</span>
-            <Link to={"/error404"}>Carreras</Link>
-          </div>
-        </div>
-        <div className="col    d-flex justify-content-center">
+
+        <div className="col d-flex justify-content-center">
           <div className="row ">
             <span className="fw-bolder">Registrate Gratis</span>
             <div>

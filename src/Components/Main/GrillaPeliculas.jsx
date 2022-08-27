@@ -11,6 +11,7 @@ const GrillaPeliculas = () => {
   const [movies, setMovies] = useState([]);
   const [moviesAux, setMoviesAux] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
+  const [flag, setFlag] = useState(false);
 
   const getPeliculas = async () => {
     await clientAxios
@@ -30,16 +31,17 @@ const GrillaPeliculas = () => {
       .get("/peliculas/getPeliculas")
       .then((response) => {
         setMovies(response.data);
-        setMoviesAux(response.data);
         setIsLoader(true);
+        setFlag(!flag);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
   useEffect(() => {
     getPeliculas();
-  }, []);
+  }, [flag]);
 
   const handleFilter = (text) => {
     if (text.length >= 3) {
