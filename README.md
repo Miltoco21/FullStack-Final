@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+![Logo de la pagina](https://user-images.githubusercontent.com/100243624/187045142-342b7419-3e65-44e2-885f-3d951dcb715d.png)
+<h1 align="left">STRANGER FLIX</h1>
+ <p align="left">
+   <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
+   </p>
+ <h2 align="left">Descripcion del Proyecto</h2>
+ Proyecto en desarrollo para que los usuarios busquen informacion sobre las peliculas que estan por ver.<br>
+ Primero el usuario, tiene que registrarse y colocar su nombre, apellido, email y password, despues tiene que iniciar sesion para poder acceder a la pagina.<br>
+ Los Usuarios pueden ver las peliculas populares del momento, los mejores valoradas, que estan por estrenarse y series de tv, pueden filtrar la pelicula que esten buscando.<br>
+ Para acceder a la informacion de cada pelicula, el usuario solo tiene que darle click al poster de la pelicula interesada y le saldra toda la informacion,
+ como el titulo, descripcion, fecha de estreno,etc.<br><br>
+ En el caso que un administrador inicie sesion, se le aparecera un boton de administracion donde lo llevara a una pagina que tendra control sobre los usuarios registrados,categorias de peliculas de la pagina, y el total de las peliculas de la pagina.<br>
+ En el caso de la ventana usuarios, podra ver la informacion de los usuarios registrados y tendra el poder de eliminarlo.<br>
+ En la ventada categorias, podra ver el total de las categorias de peliculas que tiene la pagina,tambien podra agregar la categoria que desee y se guardara en la seccion categorias(principalmente aparecera vacia hasta agregar una pelicula con dicha categoria) y tambien tendra el poder de eliminar dicha categoria.<br>
+ Y en la ventana de peliculas, podra ver una lista total de todas las peliculas almacenadas en la pagina, donde tambien podra agregar, editar y elimnar cada pelicula.
+ 
+ ## :hammer:Para Acceder al codigo del proyecto
+  Ingrese a [Repositorio](https://github.com/Miltoco21/FullStack-Final)
+  
+  ## :hammer:Para Acceder a la pagina
+  Ingrese a [Stranger Flix](https://stranger-flix.netlify.app/login)
+  
+  ## ✔️:Tecnologias Utilizadas
+  ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+  ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
+  ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+  ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+  ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+  ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+  ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+  ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+  ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
+  
+  ## 💻:Integrantes:
+  [<img src="https://user-images.githubusercontent.com/100243624/187046888-0e91fc86-4680-4129-a5e7-90e286e9929e.png" width=115><br><sub>Juan Morales Paredes</sub>](https://github.com/JM2311)<br><br>
+  [<img src="https://user-images.githubusercontent.com/100243624/187046942-e00b2c02-e06e-4516-9c7c-577aa4996da1.jpg" width=115><br><sub>Milton Peña Baeza</sub>](https://github.com/Miltoco21)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
