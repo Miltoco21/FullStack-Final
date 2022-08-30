@@ -38,7 +38,7 @@ const AdminCategorias = () => {
           Swal.fire({
             icon: "error",
             title: "Error",
-            text: "Ha ocurrido un error y no se pudo esta categoria",
+            text: "Ha ocurrido un error y no se pudo eliminar esta categoria",
           });
         });
     }

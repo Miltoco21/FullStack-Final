@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import clientAxios from "../config/clientAxios";
 import styles from "./PaginaDetalle.module.css";
 import Loader from "../Loader/Loader";
+import Button from "react-bootstrap/Button";
 
 const PaginaDetalle = () => {
   const { peliculaId } = useParams();
@@ -69,7 +70,7 @@ const PaginaDetalle = () => {
                     rows="3"
                   ></textarea>
                 </div>
-                <button type="submit" className="btn btn-danger">
+                <button  type="submit" className="btn btn-danger">
                   Enviar
                 </button>
               </form>

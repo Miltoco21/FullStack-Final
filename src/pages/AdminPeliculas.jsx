@@ -174,10 +174,11 @@ const AdminPeliculas = () => {
                                 className={` ${styles.inputJuego} ms-3`}
                                 type="text"
                                 onChange={handleChange}
+                                value={truncate(pelicula._id, 5)}
                                 id="id"
                                 name="id"
+                                disabled
                               />
-                              <span>Copiar y pegar el ID {pelicula._id}</span>
                             </div>
                             <div className="my-4">
                               <label htmlFor="titulo">Titulo</label>
