@@ -3,12 +3,22 @@ import { useParams } from "react-router";
 import clientAxios from "../config/clientAxios";
 import styles from "./PaginaDetalle.module.css";
 import Loader from "../Loader/Loader";
+import Button from "react-bootstrap/Button";
+import Swal from "sweetalert2";
 
 const PaginaDetalle = () => {
   const { peliculaId } = useParams();
   const [movie, setMovie] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
-  // const [generos, setGeneros] = useState([]);
+
+  const alertComentario = () => {
+    Swal.fire({
+      icon: "success",
+      title: "Comentario Enviado",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
 
   useEffect(() => {
     clientAxios.get(`/peliculasById/${peliculaId}`).then((response) => {
@@ -69,9 +79,7 @@ const PaginaDetalle = () => {
                     rows="3"
                   ></textarea>
                 </div>
-                <button type="submit" className="btn btn-danger">
-                  Enviar
-                </button>
+                <Button variant="danger" onClick={() => alertComentario()}>Enviar</Button>
               </form>
             </div>
           </div>

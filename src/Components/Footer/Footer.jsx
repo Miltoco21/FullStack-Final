@@ -30,7 +30,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
       <hr />
       <div className="container-fluid row">
         <div className="col-container-fluid">
