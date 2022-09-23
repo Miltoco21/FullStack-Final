@@ -12,7 +12,7 @@ const AgregarCategoria = () => {
     e.preventDefault();
     clientAxios
       .post("/categorias/agregarCategoria", {
-        name: categoriaNueva.name,
+        name: categoriaNueva.name.toLowerCase()
       })
       .then((response) => {
         if (response.status === 201) {

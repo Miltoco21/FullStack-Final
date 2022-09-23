@@ -1,8 +1,8 @@
 import { useState } from "react";
-
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import clientAxios from "../../config/clientAxios";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "", token: "" });
@@ -26,6 +26,13 @@ const Login = () => {
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("user", JSON.stringify(response.data.payload));
           }
+        })
+        .catch((err) => {
+          Swal.fire(
+            err.response.data.message,
+            "Intenta con otro usuario o contraseña",
+            "error"
+          );
         });
     } catch (error) {
       if (
@@ -38,7 +45,7 @@ const Login = () => {
     }
   };
   return (
-    <div className={`${styles.login_container} container-fluid     `}>
+    <div className={`${styles.login_container} container-fluid`}>
       <div className={`${styles.login_form_container} row `}>
         <div className={`${styles.left} col my-5`}>
           <form
@@ -68,7 +75,6 @@ const Login = () => {
                 className={`${styles.input} row`}
               />
             </div>
-
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.green_btn}>
               Iniciar Sesión

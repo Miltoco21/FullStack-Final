@@ -37,9 +37,27 @@ const Registro = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validationName = /^(?!.* (?: |$))[A-Z][a-z ]{4,15}$/;
+    if (!validationName.test(data.firstName)) {
+      Swal.fire({
+        icon: "error",
+        title: "Nombre no valido!",
+        text: "Importante: Primera Letra Mayuscula",
+      });
+      return;
+    }
+    const validationLastName = /^(?!.* (?: |$))[A-Z][a-z ]{4,15}$/;
+    if (!validationLastName.test(data.lastName)) {
+      Swal.fire({
+        icon: "error",
+        title: "Apellido no valido!",
+        text: "Importante: Primera Letra Mayuscula",
+      });
+      return;
+    }
     const validationEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (!validationEmail.test(data.email)) {
-      Swal.fire("Email no es valido,favor revisar");
+      Swal.fire("Email no es valido, revisalo");
       return;
     }
 
@@ -104,6 +122,8 @@ const Registro = () => {
                 type="text"
                 placeholder="Nombre"
                 name="firstName"
+                minLength="4"
+                maxLength="15"
                 onChange={handleChange}
                 value={data.firstName}
                 required
@@ -115,6 +135,8 @@ const Registro = () => {
                 type="text"
                 placeholder="Apellido"
                 name="lastName"
+                minLength="4"
+                maxLength="15"
                 onChange={handleChange}
                 value={data.lastName}
                 required
@@ -127,6 +149,7 @@ const Registro = () => {
                 type="email"
                 placeholder="Email"
                 name="email"
+                maxLength="20"
                 onChange={handleChange}
                 value={data.email}
                 required={"Email es requerido"}
@@ -139,6 +162,7 @@ const Registro = () => {
                 type={type}
                 placeholder="Password"
                 name="password"
+                maxLength="16"
                 onChange={handleChange}
                 value={data.password}
                 required

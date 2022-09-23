@@ -171,10 +171,10 @@ const AdminPeliculas = () => {
                               <label htmlFor="id">Id</label>
                               <input
                                 maxLength={30}
-                                className={` ${styles.inputJuego} ms-3`}
+                                className={`${styles.inputJuego} ms-3`}
                                 type="text"
                                 onChange={handleChange}
-                                value={truncate(pelicula._id, 5)}
+                                value={truncate(pelicula._id,5)}
                                 id="id"
                                 name="id"
                                 disabled
@@ -186,6 +186,7 @@ const AdminPeliculas = () => {
                                 maxLength={10}
                                 className={` ${styles.inputJuego} ms-3`}
                                 onChange={handleChange}
+                                placeholder={pelicula.titulo}
                                 type="text"
                                 id="titulo"
                                 name="titulo"
@@ -197,6 +198,7 @@ const AdminPeliculas = () => {
                                 className={`${styles.inputJuego} ms-3`}
                                 type="text"
                                 onChange={handleChange}
+                                placeholder={pelicula.poster}
                                 id="poster"
                                 name="poster"
                               />
@@ -207,6 +209,7 @@ const AdminPeliculas = () => {
                                 className={` ${styles.inputJuego} ms-3`}
                                 type="text"
                                 onChange={handleChange}
+                                placeholder={pelicula.categoria}
                                 id="categoria"
                                 name="categoria"
                               />
