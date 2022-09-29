@@ -71,7 +71,7 @@ const AdminPeliculas = () => {
         } else {
           Swal.fire({
             icon: "error",
-            title: "Ocurrior un error y no se pudo editar",
+            title: "Ocurrio un error y no se pudo editar",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -82,7 +82,7 @@ const AdminPeliculas = () => {
       .catch((error) => {
         Swal.fire({
           icon: "error",
-          title: `${error.response.data.mensaje}`,
+          title: "Ocurrio un error terrible",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -170,48 +170,54 @@ const AdminPeliculas = () => {
                             <div className="my-4">
                               <label htmlFor="id">Id</label>
                               <input
-                                maxLength={30}
-                                className={`${styles.inputJuego} ms-3`}
+                                className={` ${styles.inputPelicula} ms-3`}
                                 type="text"
                                 onChange={handleChange}
-                                value={truncate(pelicula._id,5)}
+                                value={pelicula._id}
                                 id="id"
                                 name="id"
-                                disabled
                               />
                             </div>
                             <div className="my-4">
                               <label htmlFor="titulo">Titulo</label>
                               <input
-                                maxLength={10}
-                                className={` ${styles.inputJuego} ms-3`}
+                                minLength={4}
+                                maxLength={20}
+                                className={` ${styles.inputPelicula} ms-3`}
                                 onChange={handleChange}
                                 placeholder={pelicula.titulo}
                                 type="text"
                                 id="titulo"
                                 name="titulo"
+                                required
                               />
                             </div>
                             <div className="my-4">
                               <label htmlFor="poster">Poster</label>
                               <input
-                                className={`${styles.inputJuego} ms-3`}
+                                minLength={10}
+                                maxLength={100}
+                                className={`${styles.inputPelicula} ms-3`}
                                 type="text"
                                 onChange={handleChange}
                                 placeholder={pelicula.poster}
                                 id="poster"
                                 name="poster"
+                                required
                               />
                             </div>
                             <div className="my-4">
                               <label htmlFor="categoria">Categoria</label>
                               <input
-                                className={` ${styles.inputJuego} ms-3`}
+                                minLength={4}
+                                maxLength={15}
+                                className={` ${styles.inputPelicula} ms-3`}
                                 type="text"
                                 onChange={handleChange}
                                 placeholder={pelicula.categoria}
                                 id="categoria"
                                 name="categoria"
+                                required
                               />
                             </div>
                             <div className="modal-footer">

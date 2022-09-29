@@ -67,7 +67,8 @@ const AgregarPelicula = () => {
                 Id
               </label>
               <input
-                maxLength={40}
+                minLength={6}
+                maxLength={6}
                 className={`${styles.inputJuego} ms-3`}
                 type="Number"
                 id="id"
@@ -81,6 +82,8 @@ const AgregarPelicula = () => {
                 Titulo
               </label>
               <input
+                minLength={4}
+                maxLength={20}
                 className={`${styles.inputJuego} ms-3`}
                 type="text"
                 id="titulo"
@@ -94,7 +97,8 @@ const AgregarPelicula = () => {
                 Fecha
               </label>
               <input
-                maxLength={15}
+                minLength={10}
+                maxLength={10}
                 className={` ${styles.inputJuego} ms-3`}
                 type="date"
                 id="fecha"
@@ -109,6 +113,7 @@ const AgregarPelicula = () => {
               </label>
               <textarea
                 cols={30}
+                minLength={10}
                 maxLength={300}
                 rows={6}
                 className={`ms-3`}
@@ -124,6 +129,8 @@ const AgregarPelicula = () => {
                 Categoria
               </label>
               <input
+                minLength={4}
+                maxLength={15}
                 className={`${styles.inputJuego} ms-3`}
                 type="text"
                 id="categoria"
@@ -137,11 +144,14 @@ const AgregarPelicula = () => {
                 Poster
               </label>
               <input
+                minLength={10}
+                maxLength={100}
                 className={` ${styles.inputJuego} ms-3`}
                 type="text"
                 id="poster"
                 onChange={handleChange}
                 name="poster"
+                required
               />
             </div>
             <button className="btn btn-success" type="submit">

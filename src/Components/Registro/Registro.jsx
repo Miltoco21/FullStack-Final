@@ -149,7 +149,8 @@ const Registro = () => {
                 type="email"
                 placeholder="Email"
                 name="email"
-                maxLength="20"
+                minLength="20"
+                maxLength="25"
                 onChange={handleChange}
                 value={data.email}
                 required={"Email es requerido"}
@@ -162,6 +163,7 @@ const Registro = () => {
                 type={type}
                 placeholder="Password"
                 name="password"
+                minLength="8"
                 maxLength="16"
                 onChange={handleChange}
                 value={data.password}
