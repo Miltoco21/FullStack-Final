@@ -173,11 +173,15 @@ const AdminPeliculas = () => {
                                 className={` ${styles.inputPelicula} ms-3`}
                                 type="text"
                                 onChange={handleChange}
-                                value={pelicula._id}
+                                defaultValue={pelicula.id}
                                 id="id"
                                 name="id"
                               />
                             </div>
+                            <span>
+                              Reemplazar el id actual por este codigo:{" "}
+                              {pelicula._id}
+                            </span>
                             <div className="my-4">
                               <label htmlFor="titulo">Titulo</label>
                               <input
@@ -185,7 +189,7 @@ const AdminPeliculas = () => {
                                 maxLength={20}
                                 className={` ${styles.inputPelicula} ms-3`}
                                 onChange={handleChange}
-                                placeholder={pelicula.titulo}
+                                defaultValue={pelicula.titulo}
                                 type="text"
                                 id="titulo"
                                 name="titulo"
@@ -196,11 +200,11 @@ const AdminPeliculas = () => {
                               <label htmlFor="poster">Poster</label>
                               <input
                                 minLength={10}
-                                maxLength={100}
+                                maxLength={300}
                                 className={`${styles.inputPelicula} ms-3`}
                                 type="text"
                                 onChange={handleChange}
-                                placeholder={pelicula.poster}
+                                defaultValue={pelicula.poster}
                                 id="poster"
                                 name="poster"
                                 required
@@ -210,11 +214,11 @@ const AdminPeliculas = () => {
                               <label htmlFor="categoria">Categoria</label>
                               <input
                                 minLength={4}
-                                maxLength={15}
+                                maxLength={30}
                                 className={` ${styles.inputPelicula} ms-3`}
                                 type="text"
                                 onChange={handleChange}
-                                placeholder={pelicula.categoria}
+                                defaultValue={pelicula.categoria}
                                 id="categoria"
                                 name="categoria"
                                 required

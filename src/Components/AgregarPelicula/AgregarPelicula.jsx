@@ -83,7 +83,7 @@ const AgregarPelicula = () => {
               </label>
               <input
                 minLength={4}
-                maxLength={20}
+                maxLength={25}
                 className={`${styles.inputJuego} ms-3`}
                 type="text"
                 id="titulo"
